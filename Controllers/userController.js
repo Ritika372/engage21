@@ -1,6 +1,24 @@
 const User = require("../Model/userModel");
 
-exports.getUser = (req,res,next) => {
+//Get all users
+exports.getAllUsers = async(req,res,next) => {
+    try{
+        const users = await User.find();
+        res.status(200).json({
+            status: "success",
+            result: users.length,
+            data: {
+                users
+            }
+        });
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+//Get a single user by ID
+exports.getUser = async(req,res,next) => {
     try{
         const user = User.findById(req.user._id);
         if(!user) {
@@ -14,10 +32,12 @@ exports.getUser = (req,res,next) => {
             }
         })
     } catch(err) {
-        next(err);
+        console.log(err);
     }
 }
 
+
+//Update user details (NOT FOR UPDATING PASSWORD)
 exports.updateMe = async (req, res, next) => {
   try {
     //update user data
@@ -32,10 +52,11 @@ exports.updateMe = async (req, res, next) => {
       },
     });
   } catch (err) {
-    next(err);
+    console.log(err);
   }
 };
 
+//DELETING the user by ID
 exports.deleteMe = async (req, res, next) => {
   //setting the active property of user false.
   try {
@@ -50,6 +71,6 @@ exports.deleteMe = async (req, res, next) => {
       data: null,
     });
   } catch (err) {
-    next(err);
+    console.log(err);
   }
 };

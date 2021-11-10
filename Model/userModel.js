@@ -5,15 +5,15 @@ const bcrypt = require("bcrypt");
 const UserSchema = new mongoose.Schema({
   firstName: {
     type: String,
-    required: [true, "Name is required."],
+    required: [true, "Please enter your first name."],
   },
   lastName: {
     type: String,
-    required: [true, "Name is required."],
+    required: [true, "Please enter your last name."],
   },
   email: {
     type: String,
-    required: [true, "Email is required."],
+    required: [true, "Please enter your email."],
     unique: true,
     lowercase: true,
     validate: {
@@ -32,7 +32,7 @@ const UserSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: [true, "A password is required"],
+    required: [true, "Please enter a password with more than 8 characters."],
     minlength: 8,
     select: false,
   },
@@ -42,6 +42,17 @@ const UserSchema = new mongoose.Schema({
     select: false,
   },
 });
+
+//DOCUMENT MIDDLEWARES
+
+//Will run everytime a new user is created.
+//Used for hashing the password.
+UserSchema.pre("save", async function (next) {
+  this.password = await bcrypt.hash(this.password, 10);
+  next();
+});
+
+
 
 const User = mongoose.model("User", UserSchema);
 module.exports = User;

@@ -4,6 +4,9 @@ const userRouter = require("./Routes/userRoutes");
 
 const app = express();
 
+//Parsing request body in http request
+app.use(express.json());
+
 //Middlewares
 app.use(morgan("dev"));
 
