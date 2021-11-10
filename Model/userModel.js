@@ -52,7 +52,13 @@ UserSchema.pre("save", async function (next) {
   next();
 });
 
-
+//Match the user password with the password entered by the user while logging in.
+UserSchema.methods.passwordMatch = async function (
+  enteredPassword,
+  userPassword
+) {
+  return await bcrypt.compare(enteredPassword, userPassword);
+};
 
 const User = mongoose.model("User", UserSchema);
 module.exports = User;

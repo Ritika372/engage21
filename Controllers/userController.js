@@ -38,7 +38,7 @@ exports.getUser = async(req,res,next) => {
 
 
 //Update user details (NOT FOR UPDATING PASSWORD)
-exports.updateMe = async (req, res, next) => {
+exports.updateUser = async (req, res, next) => {
   try {
     //update user data
     const updatedUser = await User.findByIdAndUpdate(req.user._id, req.body, {
@@ -57,7 +57,7 @@ exports.updateMe = async (req, res, next) => {
 };
 
 //DELETING the user by ID
-exports.deleteMe = async (req, res, next) => {
+exports.deleteUser = async (req, res, next) => {
   //setting the active property of user false.
   try {
     await User.findByIdAndUpdate(

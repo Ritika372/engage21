@@ -4,14 +4,21 @@ const authController = require("../Controllers/authController");
 
 const router = express.Router();
 
+//Routes accessbile to everyone
 router.post("/signup", authController.signUp);
-router.get("/getAllUsers", UserController.getAllUsers);
-//router.get("/me",UserController.getUser);
-// router.patch(
-//   "/updateMe",
-//   UserController.updateMe
-// );
+router.post("/login", authController.login);
 
-// router.delete("/deleteMe", UserController.deleteMe);
+//Routes accessible only to logged in users
+router.use(authController.protect)
+
+router.get("/me",UserController.getUser);
+router.patch(
+  "/updateMe",
+  UserController.updateUser
+);
+
+router.delete("/deleteMe", UserController.deleteUser);
+
+router.get("/getAllUsers", UserController.getAllUsers);
 
 module.exports = router;
