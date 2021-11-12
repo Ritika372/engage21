@@ -21,6 +21,18 @@ const subjectSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    questions: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "Question",
+        required: [true, "Question must belong to a quiz."],
+      },
+    ],
+    subject: {
+      type: mongoose.Schema.ObjectId,
+      ref: "Subject",
+      required: [true, "Quiz must belong to a subject"],
+    },
   },
   {
     toJson: { virtuals: true },

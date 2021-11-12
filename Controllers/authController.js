@@ -1,6 +1,7 @@
 const User = require("../Model/userModel");
 const jwt = require("jsonwebtoken");
 const { promisify } = require("util");
+const customError = require("../utils/customError");
 
 const signToken = (userId) => {
   return jwt.sign({ id: userId }, process.env.JWT_SECRET, {
@@ -40,8 +41,7 @@ exports.signUp = async (req, res, next) => {
     //check if user already exists
     const user = await User.findOne({ email: req.body.email });
     if (user) {
-      console.log("User already exists!");
-      return;
+      return next(new customError("User already exists! Please log in.", 409));
     }
 
     //While signing up, user cannot assign himself as ADMIN.
@@ -52,7 +52,7 @@ exports.signUp = async (req, res, next) => {
     //after signing in, the user should be logged in also
     sendJWTToken(newUser, 201, res);
   } catch (err) {
-    console.log(err);
+    next(err);
   }
 };
 
@@ -62,20 +62,18 @@ exports.login = async (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
     if (!email || !password) {
-      console.log("Please enter email and password!");
-      return;
+      return next(new customError("Please enter email and password!", 400));
     }
     const user = await User.findOne({ email }).select("password");
-    console.log(user);
+
     //If email or password doesn't match
     if (!user || !(await user.passwordMatch(password, user.password))) {
-      console.log("Invalid login credentials!");
-      return;
+      return next(new customError("Invalid login credentials!", 401));
     }
 
     sendJWTToken(user, 200, res);
   } catch (err) {
-    console.log(err);
+    next(err);
   }
 };
 
@@ -94,8 +92,9 @@ exports.protect = async (req, res, next) => {
     }
 
     if (!token) {
-      console.log("please login first");
-      return;
+      return next(
+        new customError("You are not logged in! Please login first", 401)
+      );
     }
     //verifying the token obtained from the request
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
@@ -103,8 +102,12 @@ exports.protect = async (req, res, next) => {
     //check if user still exists
     const currUser = await User.findById(decoded.id);
     if (!currUser) {
-      console.log("user with this id doesnt exist");
-      return;
+      return next(
+        new customError(
+          "The user belonging to this token no longer exists",
+          400
+        )
+      );
     }
 
     //GRANTING ACCESS TO PROTECTED ROUTE
@@ -112,6 +115,6 @@ exports.protect = async (req, res, next) => {
     res.locals.user = currUser;
     next();
   } catch (err) {
-    console.log(err);
+    next(err);
   }
 };
