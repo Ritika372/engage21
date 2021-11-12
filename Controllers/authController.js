@@ -118,3 +118,13 @@ exports.protect = async (req, res, next) => {
     next(err);
   }
 };
+
+//Restricting routes to admin only
+exports.restrictTo = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      return next(new customError("Permission not granted", 403));
+    }
+    next();
+  };
+};
