@@ -1,0 +1,28 @@
+body {
+  background-color: #f8f8f8;
+}
+
+.container {
+  font-family: Poppins;
+  width: 70%;
+  margin-top: 20px;
+  padding-top: 30px;
+  padding-bottom: 100px;
+  padding-left: -30px;
+  padding-right: -30px;
+  border-radius: 25px;
+  background-color: white;
+}
+.form-title {
+  font-family: Poppins;
+  font-weight: bold;
+}
+
+#input {
+  border: 0ch;
+  border-bottom: 1px solid #999;
+}
+#signup {
+  color: black;
+  text-decoration: underline;
+}
