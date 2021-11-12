@@ -12,6 +12,11 @@ const questionSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide an answer."],
   },
+  quiz: {
+    type: mongoose.Schema.ObjectId,
+    ref: "Subject",
+    required: [true, "Question must belong to a quiz."],
+  },
 });
 
 const Question = mongoose.model("Question", questionSchema);

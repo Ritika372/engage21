@@ -36,6 +36,16 @@ const UserSchema = new mongoose.Schema({
     minlength: 8,
     select: false,
   },
+  passwordConfirm: {
+    type: String,
+    required: [true, "Please confirm the password"],
+    validate: {
+      validator: function (ele) {
+        return ele === this.password;
+      },
+      message: "Passwords doesn't match",
+    },
+  },
   active: {
     type: Boolean,
     default: true,
@@ -49,6 +59,7 @@ const UserSchema = new mongoose.Schema({
 //Used for hashing the password.
 UserSchema.pre("save", async function (next) {
   this.password = await bcrypt.hash(this.password, 10);
+  this.passwordConfirm = undefined;
   next();
 });
 

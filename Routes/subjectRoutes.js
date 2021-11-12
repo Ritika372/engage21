@@ -13,3 +13,5 @@ router
   .get(subjectController.getOneSubject)
   .patch(subjectController.updateSubject)
   .delete(subjectController.deleteSubject);
+
+module.exports = router;
