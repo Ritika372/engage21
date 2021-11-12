@@ -1,41 +1,39 @@
 const User = require("../Model/userModel");
 
 //Get all users
-exports.getAllUsers = async(req,res,next) => {
-    try{
-        const users = await User.find();
-        res.status(200).json({
-            status: "success",
-            result: users.length,
-            data: {
-                users
-            }
-        });
-    }
-    catch (err) {
-        console.log(err);
-    }
-}
+exports.getAllUsers = async (req, res, next) => {
+  try {
+    const users = await User.find();
+    res.status(200).json({
+      status: "success",
+      result: users.length,
+      data: {
+        users,
+      },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
 
 //Get a single user by ID
-exports.getUser = async(req,res,next) => {
-    try{
-        const user = User.findById(req.user._id);
-        if(!user) {
-            //return error
-        }
-
-        res.status(200).json({
-            status: 'success',
-            data : {
-                user
-            }
-        })
-    } catch(err) {
-        console.log(err);
+exports.getUser = async (req, res, next) => {
+  try {
+    const user = User.findById(req.user._id);
+    if (!user) {
+      return next(new customError("User doens't exist.", 400));
     }
-}
 
+    res.status(200).json({
+      status: "success",
+      data: {
+        user,
+      },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
 
 //Update user details (NOT FOR UPDATING PASSWORD)
 exports.updateUser = async (req, res, next) => {
@@ -52,7 +50,7 @@ exports.updateUser = async (req, res, next) => {
       },
     });
   } catch (err) {
-    console.log(err);
+    next(err);
   }
 };
 
@@ -71,6 +69,6 @@ exports.deleteUser = async (req, res, next) => {
       data: null,
     });
   } catch (err) {
-    console.log(err);
+    next(err);
   }
 };
