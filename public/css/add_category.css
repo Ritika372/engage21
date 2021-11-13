@@ -5,6 +5,7 @@ body {
 a {
   color: black;
 }
+
 .container {
   font-family: Poppins;
 
@@ -53,6 +54,15 @@ input:not(:focus):valid ~ .floating-label {
   color: #404040;
 }
 
+textarea:focus ~ .floating-label,
+textarea:not(:focus):valid ~ .floating-label {
+  top: -15px;
+  bottom: 0px;
+  left: 0px;
+  font-size: 11px;
+  opacity: 1;
+  color: #404040;
+}
 .list-group-item.active {
   background-color: #88e0ef;
   color: black;
@@ -72,11 +82,13 @@ img {
 }
 
 #property {
-  text-align: center;
+  text-align: left;
+  width: 5%;
+  padding-top: 20px;
 }
 #value {
   text-align: left;
 }
-.table {
-  table-layout: fixed;
+table {
+  table-layout: auto;
 }

@@ -5,6 +5,7 @@ body {
 a {
   color: black;
 }
+
 .container {
   font-family: Poppins;
 
@@ -72,11 +73,13 @@ img {
 }
 
 #property {
-  text-align: center;
+  text-align: left;
+  width: 5%;
+  padding-top: 20px;
 }
 #value {
   text-align: left;
 }
-.table {
-  table-layout: fixed;
+table {
+  table-layout: auto;
 }
