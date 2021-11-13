@@ -14,6 +14,7 @@ if (loginForm) {
     login(email, pass);
   });
 }
+
 if (signupForm) {
   signupForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -27,7 +28,6 @@ if (signupForm) {
       "#signup-confirm-password"
     ).value;
 
-    console.log(data);
     signup(data);
   });
 }

@@ -9159,7 +9159,6 @@ if (signupForm) {
     data.lastName = document.querySelector("#signup-lastname").value;
     data.phone = document.querySelector("#signup-phone").value;
     data.passwordConfirm = document.querySelector("#signup-confirm-password").value;
-    console.log(data);
     (0, _login.signup)(data);
   });
 }
