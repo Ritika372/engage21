@@ -22,13 +22,6 @@ const quizSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
-    numberOfQuestionsRandom: {
-      type: Number,
-      required: [
-        true,
-        "Please tell the number of questions to be displayed in a quiz",
-      ],
-    },
     questions: [
       {
         type: mongoose.Schema.ObjectId,
