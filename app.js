@@ -4,6 +4,8 @@ const userRouter = require("./Routes/userRoutes");
 const subjectRouter = require("./Routes/subjectRoutes");
 const customError = require("./utils/customError");
 const globalErrorHandler = require("./Controllers/errorController");
+const quizRouter = require("./Routes/quizRoutes");
+const questionRouter = require("./Routes/questionRoutes");
 
 const app = express();
 
@@ -15,6 +17,8 @@ app.use(morgan("dev"));
 
 app.use("/api/users", userRouter);
 app.use("/api/subjects", subjectRouter);
+app.use("/api/quiz", quizRouter);
+app.use("/api/questions", questionRouter);
 
 //To handle unhandled routes
 app.all("*", (req, res, next) => {

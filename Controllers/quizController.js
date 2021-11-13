@@ -4,7 +4,12 @@ const customError = require("../utils/customError");
 //Get one Quiz by id
 exports.getOneQuiz = async (req, res, next) => {
   try {
-    const quiz = await Quiz.findById(req.params.id);
+    const filter = {};
+    if (req.params.subId) filter = { subject: req.params.subId };
+    const quiz = await Quiz.findById(req.params.id, filter);
+    if (!quiz) {
+      return next(new customError("No Quiz with this ID exists!", 404));
+    }
     res.status(200).json({
       status: "success",
       data: {
@@ -19,7 +24,12 @@ exports.getOneQuiz = async (req, res, next) => {
 //Get all Quiz
 exports.getAllQuiz = async (req, res, next) => {
   try {
-    const quiz = await Quiz.find();
+    const filter = {};
+    if (req.params.subId) filter = { subject: req.params.subId };
+    const quiz = await Quiz.find(filter);
+    if (!quiz) {
+      return next(new customError("No Quiz with this ID exists!", 404));
+    }
     res.status(200).json({
       status: "success",
       result: quiz.length,

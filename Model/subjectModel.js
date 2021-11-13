@@ -10,13 +10,6 @@ const subjectSchema = new mongoose.Schema(
     description: {
       type: "String",
     },
-    quiz: [
-      {
-        type: mongoose.Schema.ObjectId,
-        ref: "Quiz",
-        required: [true, "Quiz must belong to a subject."],
-      },
-    ],
   },
   {
     toJson: { virtuals: true },
