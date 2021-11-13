@@ -1,5 +1,6 @@
 const subjectController = require("../Controllers/subjectController");
 const authController = require("../Controllers/authController");
+const quizRouter = require("../Routes/quizRoutes");
 const express = require("express");
 
 const router = express.Router();
