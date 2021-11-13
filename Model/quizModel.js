@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+const Question = require("./questionModel");
 
-const subjectSchema = new mongoose.Schema(
+const quizSchema = new mongoose.Schema(
   {
     name: {
       type: "String",
@@ -21,18 +22,10 @@ const subjectSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
-    numberOfQuestionsRandom: {
-      type: Number,
-      required: [
-        true,
-        "Please tell the number of questions to be displayed in a quiz",
-      ],
-    },
     questions: [
       {
         type: mongoose.Schema.ObjectId,
         ref: "Question",
-        required: [true, "Question must belong to a quiz."],
       },
     ],
     subject: {
@@ -46,6 +39,22 @@ const subjectSchema = new mongoose.Schema(
     toObject: { virtuals: true },
   }
 );
+
+quizSchema.pre("save", async function (next) {
+  const quePromises = this.questions.map(
+    async (id) => await Question.findById(id)
+  );
+  this.questions = await Promise.all(quePromises);
+  next();
+});
+
+quizSchema.pre(/^find/, async function (next) {
+  this.populate({
+    path: "questions",
+    select: "content options answer",
+  });
+  next();
+});
 
 const Quiz = mongoose.model("Quiz", quizSchema);
 module.exports = Quiz;

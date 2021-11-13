@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const questionSchema = new mongoose.Schema({
   content: {
     type: "String",
-    required: [true, "Quiz Name is required."],
+    required: [true, "Question content is required."],
   },
   options: {
     type: Array,

@@ -17,4 +17,6 @@ router
   .patch(authController.restrictTo("admin"), subjectController.updateSubject)
   .delete(authController.restrictTo("admin"), subjectController.deleteSubject);
 
+router.use("/:subId/quiz", quizRouter);
+
 module.exports = router;
