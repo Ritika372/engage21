@@ -1,9 +1,11 @@
 import "@babel/polyfill";
 
 import { login, signup } from "./login";
+import { addSubject } from "./subject";
 
 const loginForm = document.getElementById("login-form");
 const signupForm = document.getElementById("signup-form");
+const addSubjectForm = document.getElementById("addSubject-form");
 
 if (loginForm) {
   loginForm.addEventListener("submit", (event) => {
@@ -29,5 +31,14 @@ if (signupForm) {
     ).value;
 
     signup(data);
+  });
+}
+
+if (addSubjectForm) {
+  addSubjectForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const name = document.querySelector("#addSubject-title").value;
+    const description = document.querySelector("#addSubject-description").value;
+    addSubject(name, description);
   });
 }

@@ -17,5 +17,12 @@ const subjectSchema = new mongoose.Schema(
   }
 );
 
+// virtual populate
+subjectSchema.virtual("quizzes", {
+  ref: "Quiz",
+  foreignField: "subject",
+  localField: "_id",
+});
+
 const Subject = mongoose.model("Subject", subjectSchema);
 module.exports = Subject;

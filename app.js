@@ -8,6 +8,7 @@ const globalErrorHandler = require("./Controllers/errorController");
 const quizRouter = require("./Routes/quizRoutes");
 const questionRouter = require("./Routes/questionRoutes");
 const viewRouter = require("./Routes/viewRoutes");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 
@@ -15,6 +16,8 @@ app.set("view engine", "ejs");
 
 //Parsing request body in http request
 app.use(express.json());
+
+app.use(cookieParser());
 
 app.use(express.static("public"));
 

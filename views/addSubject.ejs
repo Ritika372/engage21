@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title>Category</title>
+    <title>Add Subject</title>
     <link rel="icon" href="../assets/book-fill.png" />
     <link
       rel="stylesheet"
@@ -14,7 +14,7 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../css/categories.css" />
+    <link rel="stylesheet" href="../css/add_category.css" />
     <script
       src="https://kit.fontawesome.com/d46d25282a.js"
       crossorigin="anonymous"
@@ -63,28 +63,28 @@
               >
               <a
                 class="list-group-item list-group-item-action"
-                id="list-profile-list"
+                id="list-profile-list "
                 href="admin_profile.html"
                 role="tab"
                 aria-controls="profile"
                 ><i class="fas fa-id-card"></i> Profile</a
               >
               <a
-                class="list-group-item list-group-item-action active"
+                class="list-group-item list-group-item-action"
                 id="list-messages-list"
+                href="/subjects"
+                role="tab"
+                aria-controls="messages"
+                ><i class="fas fa-list"></i>Subjects</a
+              >
+              <a
+                class="list-group-item list-group-item-action active"
+                id="list-profile-list"
                 data-toggle="list"
                 href="#list-messages"
                 role="tab"
-                aria-controls="messages"
-                ><i class="fas fa-list"></i> Categories</a
-              >
-              <a
-                class="list-group-item list-group-item-action"
-                id="list-profile-list"
-                href="add_category.html"
-                role="tab"
                 aria-controls="profile"
-                ><i class="fas fa-plus-circle"></i> Add Category</a
+                ><i class="fas fa-plus-circle"></i> Add Subject</a
               >
               <a
                 class="list-group-item list-group-item-action"
@@ -132,38 +132,60 @@
                 aria-labelledby="list-profile-list"
               >
                 <div class="card text-center">
-                  <div class="card-header">All Categories</div>
+                  <div class="card-header">Add Subject</div>
 
                   <div class="card-body">
-                    <table class="table table-hover">
-                      <tbody>
-                        <tr>
-                          <td id="property"><i class="fas fa-shapes"></i></td>
-                          <td id="value">
-                            Category 1 <br />
-                            Category Description
-                          </td>
-                        </tr>
-                        <tr>
-                          <td id="property"><i class="fas fa-shapes"></i></td>
-                          <td id="value">
-                            Category 2 <br />
-                            Category Description
-                          </td>
-                        </tr>
-                        <tr>
-                          <td id="property"><i class="fas fa-shapes"></i></td>
-                          <td id="value">
-                            Category 3 <br />
-                            Category Description
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                    <form id="addSubject-form">
+                      <div class="row">
+                        <div class="col offset-3">
+                          <div class="form-group row">
+                            <label for="staticEmail" class="col-form-label">
+                              <i class="fas fa-bookmark"></i>
+                            </label>
+                            <div class="col-sm-8">
+                              <div class="floating-label-group">
+                                <input
+                                  type="text"
+                                  id="addSubject-title"
+                                  class="form-control"
+                                  autocomplete="off"
+                                  autofocus
+                                  required
+                                />
+                                <label class="floating-label">Title</label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="staticEmail" class="col-form-label">
+                              <i class="fas fa-edit"></i>
+                            </label>
+                            <div class="col-sm-8">
+                              <div class="floating-label-group">
+                                <textarea
+                                  id="addSubject-description"
+                                  class="form-control"
+                                  autocomplete="off"
+                                  autofocus
+                                  required
+                                ></textarea>
+                                <label class="floating-label"
+                                  >Description</label
+                                >
+                              </div>
+                            </div>
+                          </div>
+
+                          <br />
+                          <div class="form-group row offset-3">
+                            <button type="submit" class="btn btn-primary">
+                              Add Subject
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
                     <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
-                    <a href="add_category.html" class="btn btn-primary"
-                      >Add New Category</a
-                    >
                   </div>
                   <div class="card-footer text-muted">Engage '21</div>
                 </div>
