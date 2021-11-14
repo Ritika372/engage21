@@ -1,5 +1,7 @@
 const Quiz = require("../Model/quizModel");
 const customError = require("../utils/customError");
+const Question = require("../Model/questionModel");
+const Result = require("../Model/resultModel");
 
 //Get one Quiz by id
 exports.getOneQuiz = async (req, res, next) => {
@@ -95,3 +97,40 @@ exports.deleteQuiz = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.evalauteQuiz() = async(req,res,next) => {
+  try{
+    const quizId = req.params.id;
+    const quiz = await Quiz.findById(quizId);
+    const questions = req.body.questions;
+    const markedAnswers = req.body.markedAnswers;
+    const userId = req.user._id;
+
+    const maxMarks = quiz.maxMarks;
+    let marksScored = 0;
+    let correctAnswers = 0;
+
+    for(let i = 0;i<questions.length;i+=1) {
+      const question = await Question.findById(questions[i]);
+      if(markedAnswers[i] == question.answer){
+        marksScored += (Math.round(maxMarks/questions.length));
+        correctAnswers++;
+      }
+    }
+
+    const result = await Result.create({
+      user: userId,
+      quiz: quizId,
+      marksScored,
+      correctAnswers
+    });
+
+    res.status(201).json({
+      status: "success",
+      data: {
+        result
+      }
+    });
+
+  } catch(err){next(err);}
+}

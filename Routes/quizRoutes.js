@@ -15,6 +15,7 @@ router
 router
   .route("/:id")
   .get(quizController.getOneQuiz)
+  .post(quizController.evaluateQuiz)
   .patch(authController.restrictTo("admin"), quizController.updateQuiz)
   .delete(authController.restrictTo("admin"), quizController.deleteQuiz);
 

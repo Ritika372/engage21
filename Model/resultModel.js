@@ -20,6 +20,10 @@ const resultSchema = new mongoose.Schema(
       type: Number,
       required: [true, "Result must have a Score"],
     },
+    correctAnswers: {
+      type: Number,
+      required: [true, "Result must have number of correct answers."],
+    },
   },
   {
     toJson: { virtuals: true },
