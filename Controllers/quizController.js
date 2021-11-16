@@ -98,8 +98,8 @@ exports.deleteQuiz = async (req, res, next) => {
   }
 };
 
-exports.evalauteQuiz() = async(req,res,next) => {
-  try{
+exports.evaluateQuiz = async (req, res, next) => {
+  try {
     const quizId = req.params.id;
     const quiz = await Quiz.findById(quizId);
     const questions = req.body.questions;
@@ -110,10 +110,10 @@ exports.evalauteQuiz() = async(req,res,next) => {
     let marksScored = 0;
     let correctAnswers = 0;
 
-    for(let i = 0;i<questions.length;i+=1) {
+    for (let i = 0; i < questions.length; i += 1) {
       const question = await Question.findById(questions[i]);
-      if(markedAnswers[i] == question.answer){
-        marksScored += (Math.round(maxMarks/questions.length));
+      if (markedAnswers[i] == question.answer) {
+        marksScored += Math.round(maxMarks / questions.length);
         correctAnswers++;
       }
     }
@@ -122,15 +122,16 @@ exports.evalauteQuiz() = async(req,res,next) => {
       user: userId,
       quiz: quizId,
       marksScored,
-      correctAnswers
+      correctAnswers,
     });
 
     res.status(201).json({
       status: "success",
       data: {
-        result
-      }
+        result,
+      },
     });
-
-  } catch(err){next(err);}
-}
+  } catch (err) {
+    next(err);
+  }
+};

@@ -1,0 +1,414 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Add Quesiton</title>
+    <link rel="icon" href="../../assets/book-fill.png" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../../css/add_ques.css" />
+    <script
+      src="https://kit.fontawesome.com/d46d25282a.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark navbar-expand-lg">
+      <a class="navbar-brand" href="#"
+        ><i class="fas fa-book"></i> Exam Portal</a
+      >
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto"></ul>
+        <span>
+          <a class="navbar-brand" href="#">Hi Ritika!</a>
+          <a class="navbar-brand" href="#"
+            >Logout <i class="fas fa-sign-out-alt"></i
+          ></a>
+        </span>
+      </div>
+    </nav>
+    <div class="bootstrap-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-3">
+            <div class="list-group" id="list-tab" role="tablist">
+              <a
+                class="list-group-item list-group-item-action"
+                id="list-home-list"
+                data-toggle="list"
+                href="#list-home"
+                role="tab"
+                aria-controls="home"
+                ><i class="fas fa-home"></i> Home</a
+              >
+              <a
+                class="list-group-item list-group-item-action"
+                id="list-profile-list "
+                href="admin_profile.html"
+                role="tab"
+                aria-controls="profile"
+                ><i class="fas fa-id-card"></i> Profile</a
+              >
+              <a
+                class="list-group-item list-group-item-action"
+                id="list-messages-list"
+                href="categories.html"
+                role="tab"
+                aria-controls="messages"
+                ><i class="fas fa-list"></i> Subject</a
+              >
+              <a
+                class="list-group-item list-group-item-action"
+                id="list-profile-list"
+                href="add_category.html"
+                role="tab"
+                aria-controls="profile"
+                ><i class="fas fa-plus-circle"></i> Add Subject</a
+              >
+              <a
+                class="list-group-item list-group-item-action"
+                id="list-profile-list"
+                href="quiz.html"
+                role="tab"
+                aria-controls="profile"
+                ><i class="fas fa-question-circle"></i> Quizzes</a
+              >
+              <a
+                class="list-group-item list-group-item-action"
+                id="list-profile-list"
+                href="add_quiz.html"
+                role="tab"
+                aria-controls="profile"
+                ><i class="fas fa-plus"></i> Add Quiz</a
+              >
+              <a
+                class="list-group-item list-group-item-action"
+                id="list-profile-list"
+                href="admin_profile.html"
+                role="tab"
+                aria-controls="profile"
+                ><i class="fas fa-sign-out-alt"></i> Logout</a
+              >
+            </div>
+          </div>
+          <div class="col-9">
+            <div class="tab-content" id="nav-tabContent">
+              <div
+                class="tab-pane fade"
+                id="list-home"
+                role="tabpanel"
+                aria-labelledby="list-home-list"
+              >
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui,
+                unde facere. Cumque impedit ab voluptates corporis expedita,
+                tempore temporibus reprehenderit neque assumenda veritatis ullam
+                repellendus natus excepturi mollitia deserunt dolorum!
+              </div>
+              <div
+                class="tab-pane fade show active"
+                id="list-profile"
+                role="tabpanel"
+                aria-labelledby="list-profile-list"
+              >
+                <div class="card text-center">
+                  <div class="card-header">
+                    <h4>Quiz Title</h4>
+                  </div>
+
+                  <div class="card-body">
+                    <form>
+                      <div class="row">
+                        <div class="col offset-3">
+                          <div class="form-group row">
+                            <h4>Add Question</h4>
+                          </div>
+
+                          <div class="form-group row">
+                            <label for="staticEmail" class="col-form-label">
+                              <i class="far fa-question-circle"></i>
+                            </label>
+                            <div class="col-sm-8">
+                              <div class="floating-label-group">
+                                <textarea
+                                  style="margin-left: -1%"
+                                  id="input"
+                                  class="form-control"
+                                  autocomplete="off"
+                                  autofocus
+                                  required
+                                ></textarea>
+                                <label class="floating-label">Question</label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-5">
+                              <div class="form-group row">
+                                <label for="staticEmail" class="col-form-label">
+                                  <i class="fas fa-bookmark"></i>
+                                </label>
+                                <div class="col-sm-8">
+                                  <div class="floating-label-group">
+                                    <input
+                                      type="text"
+                                      id="input"
+                                      name="input1"
+                                      class="form-control"
+                                      autocomplete="off"
+                                      autofocus
+                                      required
+                                    />
+                                    <label class="floating-label"
+                                      >Option 1</label
+                                    >
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-5" style="margin-left: -2%">
+                              <div class="form-group row">
+                                <label for="staticEmail" class="col-form-label">
+                                  <i class="fas fa-bookmark"></i>
+                                </label>
+                                <div class="col-sm-8">
+                                  <div class="floating-label-group">
+                                    <input
+                                      type="text"
+                                      id="input"
+                                      name="input2"
+                                      class="form-control"
+                                      autocomplete="off"
+                                      autofocus
+                                      required
+                                    />
+                                    <label class="floating-label"
+                                      >Option 2</label
+                                    >
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-5">
+                              <div class="form-group row">
+                                <label for="staticEmail" class="col-form-label">
+                                  <i class="fas fa-bookmark"></i>
+                                </label>
+                                <div class="col-sm-8">
+                                  <div class="floating-label-group">
+                                    <input
+                                      type="text"
+                                      id="input"
+                                      name="input3"
+                                      class="form-control"
+                                      autocomplete="off"
+                                      autofocus
+                                      required
+                                    />
+                                    <label class="floating-label"
+                                      >Option 3</label
+                                    >
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-5" style="margin-left: -2%">
+                              <div class="form-group row">
+                                <label for="staticEmail" class="col-form-label">
+                                  <i class="fas fa-bookmark"></i>
+                                </label>
+                                <div class="col-sm-8">
+                                  <div class="floating-label-group">
+                                    <input
+                                      type="text"
+                                      id="input"
+                                      name="input4"
+                                      class="form-control"
+                                      autocomplete="off"
+                                      autofocus
+                                      required
+                                    />
+                                    <label class="floating-label"
+                                      >Option 4</label
+                                    >
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="form-group row">
+                            <label for="staticEmail" class="col-form-label">
+                              <i class="fas fa-edit"></i>
+                            </label>
+                            <div class="col-sm-8" style="margin-left: -1%">
+                              <div class="floating-label-group">
+                                <select
+                                  class="custom-select my-1 mr-sm-2"
+                                  id="input"
+                                >
+                                  <option selected>Choose Answer</option>
+                                  <option
+                                    hidden
+                                    id="option1"
+                                    value="1"
+                                  ></option>
+                                  <option
+                                    hidden
+                                    id="option2"
+                                    value="2"
+                                  ></option>
+                                  <option
+                                    hidden
+                                    id="option3"
+                                    value="3"
+                                  ></option>
+                                  <option
+                                    hidden
+                                    id="option4"
+                                    value="3"
+                                  ></option>
+                                </select>
+                                <label class="floating-label"></label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <br />
+                          <div class="form-group row offset-3">
+                            <button type="submit" class="btn btn-primary">
+                              Add Question
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                    <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+                  </div>
+                  <div class="card-footer text-muted">Engage '21</div>
+                </div>
+              </div>
+              <div
+                class="tab-pane fade"
+                id="list-messages"
+                role="tabpanel"
+                aria-labelledby="list-messages-list"
+              >
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
+                ipsum maxime quo animi modi amet quis minus cupiditate, porro,
+                error aperiam aliquam? Quae quisquam officiis mollitia tempore
+                provident inventore eaque.
+              </div>
+              <div
+                class="tab-pane fade"
+                id="list-settings"
+                role="tabpanel"
+                aria-labelledby="list-settings-list"
+              >
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Dolore, quod sit quis ullam numquam, quos inventore repudiandae
+                est recusandae itaque corporis sed rem debitis? Maxime dolorum
+                eaque dolorem eius laboriosam!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    document
+      .getElementsByName("input1")[0]
+      .addEventListener("input", function (evt) {
+        if (this.value) {
+          document.getElementById("option1").hidden = false;
+          document.getElementById("option1").innerHTML = this.value;
+        } else {
+          document.getElementById("option1").hidden = true;
+        }
+      });
+    document
+      .getElementsByName("input2")[0]
+      .addEventListener("input", function (evt) {
+        if (this.value) {
+          document.getElementById("option2").hidden = false;
+          document.getElementById("option2").innerHTML = this.value;
+        } else {
+          document.getElementById("option2").hidden = true;
+        }
+      });
+    document
+      .getElementsByName("input3")[0]
+      .addEventListener("input", function (evt) {
+        if (this.value) {
+          document.getElementById("option3").hidden = false;
+          document.getElementById("option3").innerHTML = this.value;
+        } else {
+          document.getElementById("option3").hidden = true;
+        }
+      });
+    document
+      .getElementsByName("input4")[0]
+      .addEventListener("input", function (evt) {
+        if (this.value) {
+          document.getElementById("option4").hidden = false;
+          document.getElementById("option4").innerHTML = this.value;
+        } else {
+          document.getElementById("option4").hidden = true;
+        }
+      });
+
+    //       const source = document.getElementById('input1');
+    //       const result = document.getElementById('ans1' );
+
+    // const inputHandler = function(ele,e) {
+    //   console.log(ele);
+
+    //   result.innerHTML = e.target.value;
+    //   result.value=e.target.value;
+    // }
+    //  "input1 ".split(" ").forEach(ele =>
+    //  document.getElementById(ele).addEventListener('input',inputHandler)
+    //  );
+  </script>
+
+  <script src="../../../js/bundle.js"></script>
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"
+  ></script>
+</html>

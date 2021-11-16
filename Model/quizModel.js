@@ -53,6 +53,11 @@ quizSchema.pre(/^find/, async function (next) {
     path: "questions",
     select: "content options answer",
   });
+
+  this.populate({
+    path: "subject",
+    select: "name",
+  });
   next();
 });
 
