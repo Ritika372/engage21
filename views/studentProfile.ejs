@@ -150,97 +150,30 @@
 
                   <div class="card-body">
                     <div class="card-group">
+                      <% activeQuizzes.forEach((quiz) => { %>
                       <div class="col-sm-4">
-                          <% activeQuizzes.forEach
                         <div class="card">
                           <div class="card-body">
-                            <h5 class="card-title">Quiz title</h5>
+                            <h5 class="card-title"><%= quiz.name %></h5>
                             <h6 class="card-subtitle mb-2 text-muted">
-                              Quiz subtitle
+                              <%= quiz.subject.name %>
                             </h6>
                             <p class="card-text">
-                              Some quick example text to build on the card title
-                              and make up the bulk of the card's content. <br />
-                              <i> Ques:20 Marks:100 </i>
+                              <%= quiz.description %> <br />
+                              <i>
+                                Ques:<%= quiz.numberOfQuestions %> Marks: <%=
+                                quiz.maxMarks %>
+                              </i>
                             </p>
-
-                            <button type="button" class="btn btn-light">
-                              View
-                            </button>
                             <button type="button" class="btn btn-info">
                               Start
                             </button>
                           </div>
                         </div>
                       </div>
-                      <div class="col-sm-4">
-                        <div class="card">
-                          <div class="card-body">
-                            <h5 class="card-title">Quiz title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">
-                              Quiz subtitle
-                            </h6>
-                            <p class="card-text">
-                              Some quick example text to build on the card title
-                              and make up the bulk of the card's content.
-                            </p>
 
-                            <button type="button" class="btn btn-light">
-                              View
-                            </button>
-                            <button type="button" class="btn btn-light">
-                              Start
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-4">
-                        <div class="card">
-                          <div class="card-body">
-                            <h5 class="card-title">Quiz title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">
-                              Quiz subtitle
-                            </h6>
-                            <p class="card-text">
-                              Some quick example text to build on the card title
-                              and make up the bulk of the card's content.
-                              <br />
-                              <i> Ques:20 Marks:100 </i>
-                            </p>
-
-                            <button type="button" class="btn btn-light">
-                              View
-                            </button>
-                            <button type="button" class="btn btn-light">
-                              Start
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-4">
-                        <div class="card">
-                          <div class="card-body">
-                            <h5 class="card-title">Quiz title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">
-                              Quiz subtitle
-                            </h6>
-                            <p class="card-text">
-                              Some quick example text to build on the card title
-                              and make up the bulk of the card's content.
-                            </p>
-
-                            <button type="button" class="btn btn-light">
-                              View
-                            </button>
-                            <button type="button" class="btn btn-light">
-                              Start
-                            </button>
-                          </div>
-                        </div>
-                      </div>
+                      <% }) %>
                     </div>
-
-                    <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
                   </div>
                   <div class="card-footer text-muted">Engage '21</div>
                 </div>
@@ -267,74 +200,7 @@
                               Some quick example text to build on the card title
                               and make up the bulk of the card's content.
                             </p>
-
-                            <button type="button" class="btn btn-light">
-                              View
-                            </button>
                             <button type="button" class="btn btn-info">
-                              Start
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-4">
-                        <div class="card">
-                          <div class="card-body">
-                            <h5 class="card-title">Quiz title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">
-                              Quiz subtitle
-                            </h6>
-                            <p class="card-text">
-                              Some quick example text to build on the card title
-                              and make up the bulk of the card's content.
-                            </p>
-
-                            <button type="button" class="btn btn-light">
-                              View
-                            </button>
-                            <button type="button" class="btn btn-light">
-                              Start
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-4">
-                        <div class="card">
-                          <div class="card-body">
-                            <h5 class="card-title">Quiz title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">
-                              Quiz subtitle
-                            </h6>
-                            <p class="card-text">
-                              Some quick example text to build on the card title
-                              and make up the bulk of the card's content.
-                            </p>
-
-                            <button type="button" class="btn btn-light">
-                              View
-                            </button>
-                            <button type="button" class="btn btn-light">
-                              Start
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-4">
-                        <div class="card">
-                          <div class="card-body">
-                            <h5 class="card-title">Quiz title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">
-                              Quiz subtitle
-                            </h6>
-                            <p class="card-text">
-                              Some quick example text to build on the card title
-                              and make up the bulk of the card's content.
-                            </p>
-
-                            <button type="button" class="btn btn-light">
-                              View
-                            </button>
-                            <button type="button" class="btn btn-light">
                               Start
                             </button>
                           </div>
@@ -352,6 +218,9 @@
     </div>
   </body>
 
+  <script>
+      
+  </script>
   <script
     src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

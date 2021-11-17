@@ -12,6 +12,7 @@ router.get("/quizzes/:id/attemptQuiz", viewController.getRandomQuestionsOfQuizBy
 router.get("/quizzes/:id/result", viewController.getQuizResultPage);
 router.get("/studentProfile", viewController.getStudentProfilePage);
 
+
 router.use(authController.restrictTo("admin"));
 
 router.get("/profile", viewController.getAdminProfilePage);

@@ -8776,7 +8776,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var login = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(email, password) {
-    var res;
+    var res, id;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -8797,6 +8797,8 @@ var login = /*#__PURE__*/function () {
 
             if (res.data.status === "success") {
               (0, _alert.showAlert)("success", "Logged In successfully!");
+              id = res.data.status.data.user.id;
+              console.log(id);
               window.setTimeout(function () {
                 location.assign("/profile");
               }, 1500);
@@ -9525,7 +9527,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58144" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56805" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
