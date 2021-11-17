@@ -2,8 +2,9 @@ import "@babel/polyfill";
 
 import { login, signup } from "./login";
 import { addSubject } from "./subject";
-import { addQuiz } from "./quiz";
-import {addQuestion} from "./question";
+import { addQuiz, evaluateQuiz } from "./quiz";
+import { addQuestion } from "./question";
+
 
 const loginForm = document.getElementById("login-form");
 const signupForm = document.getElementById("signup-form");
@@ -67,30 +68,48 @@ if (addQuizForm) {
   });
 }
 
-if(addQuesForm) {
+if (addQuesForm) {
   addQuesForm.addEventListener("submit", (event) => {
     event.preventDefault();
     let data = {};
     data.content = document.getElementById("question-content").value;
     data.quiz = document.getElementById("addQue-submit").dataset.quizid;
     let options = [];
-    document.querySelectorAll('#option').forEach((input) => {
-      if(input.value) options.push(input.value);
+    document.querySelectorAll("#option").forEach((input) => {
+      if (input.value) options.push(input.value);
     });
     data.options = options;
     data.answer = document.getElementById("answer").value;
-    
+
     addQuestion(data);
   });
 }
 
-if(submitQuizForm) {
+if (submitQuizForm) {
   submitQuizForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const numberOfQuestions = submitQuizForm.dataset.numberofquestions;
-    for(let i =0;i<numberOfQuestions;i+=1)
+    const quizId = submitQuizForm.dataset.quizid;
+    let questions = [];
+    let markedAnswers = [];
 
-  })
+    for (let i = 0; i < numberOfQuestions; i += 1) {
+      let queId = `questionId${i}`;
+      if (document.getElementById(queId)) {
+        questions.push(document.getElementById(queId).dataset.queid);
+      }
+
+      let markedAns = document.getElementsByName(`option${i}`);
+      for (let i = 0; i < markedAns.length; i++) {
+        if (markedAns[i].checked) {
+          markedAnswers.push(markedAns[i].value);
+          break;
+        }
+      }
+    }
+
+    evaluateQuiz(questions,markedAnswers, quizId);
+  });
 }
 
 if (questionsButton) {
@@ -100,4 +119,3 @@ if (questionsButton) {
     location.assign(`/quizzes/${quizId}/questions`);
   });
 }
-

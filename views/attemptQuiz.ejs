@@ -31,7 +31,7 @@
           </div>
           <div class="col-md-8">
             <br />
-            <form data-numberofquestions = <%= quiz.numberOfQuestions %> id = "submitQuiz-form">
+            <form data-numberofquestions = <%= quiz.numberOfQuestions %> data-quizid = <%= quiz._id %> id = "submitQuiz-form">
             <div class="card text-center">
               <div class="card-header"> <b><%= quiz.name %> </b></div>
               <div class="card-body">
@@ -45,14 +45,14 @@
                           <div class="card" id="ques_card">
                             <div class="card-body" id="ques_body">
                               <p><%= question.content %></p>
-                              <% question.options.forEach((option,index) => { %>
+                              <% question.options.forEach((option,i) => { %>
                               <div class="radio">
                                 <label>
                                   <input
                                     type="radio"
                                     name= <%= `option${index}` %>
-                                    id= <%= `option${index}` %>
-                                    value="option1"
+                                    value= <%= option %>
+                                    required
                                   />
                                   <%= option %>
                                 </label>
