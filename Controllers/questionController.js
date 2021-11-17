@@ -72,7 +72,19 @@ exports.getAllQuestion = async (req, res, next) => {
 //Create question
 exports.createQuestion = async (req, res, next) => {
   try {
+    const quizId = req.body.quiz;
+    const quiz = await Quiz.findById(quizId);
     const question = await Question.create(req.body);
+
+    let questions = quiz.questions;
+    questions.push(question._id);
+
+    const updatedQuiz = await Quiz.findByIdAndUpdate(
+      quizId,
+      { questions },
+      { new: true, runValidators: true, useFindAndModify: false }
+    );
+
     res.status(201).json({
       status: "success",
       data: {
