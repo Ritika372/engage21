@@ -33,28 +33,6 @@ exports.getAddSubjectPage = async (req, res, next) => {
   res.status(200).render("addSubject", { user: req.user });
 };
 
-//show only those quizzes which are active and not attempted by user.
-exports.getActiveQuizzes = async (req, res, next) => {
-  try {
-    const subjects = await Subject.find();
-    const quizAttemptedByUser = await Result.find(
-      { user: req.user._id },
-      { _id: 1 }
-    );
-    const activeQuizzes = await Quiz.find({
-      active: true,
-      _id: { $nin: quizAttemptedByUser },
-    });
-    console.log(activeQuizzes);
-
-    res
-      .status(200)
-      .render("activeQuizzes", { quizzes: activeQuizzes, subjects });
-  } catch (err) {
-    next(err);
-  }
-};
-
 exports.getQuizPage = async (req, res, next) => {
   try {
     const quizzes = await Quiz.find();
@@ -114,8 +92,37 @@ exports.getRandomQuestionsOfQuizById = async (req, res, next) => {
 
 exports.getQuizResultPage = async (req, res, next) => {
   try {
-    const result = await Result.find({ quiz: req.params.id, user: req.user._id });
-    res.status(200).render("quizResult", {result});
+    const result = await Result.find({
+      quiz: req.params.id,
+      user: req.user._id,
+    });
+    res.status(200).render("quizResult", { result });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getStudentProfilePage = async (req, res, next) => {
+  try {
+    const subjects = await Subject.find();
+    const quizAttemptedByUser = await Result.find(
+      { user: req.user._id },
+      { quiz: 1 }
+    );
+
+    let quizAttemptedByUserArrayOfIds = [];
+
+    quizAttemptedByUser.forEach((quiz) => {
+      quizAttemptedByUserArrayOfIds.push(quiz.quiz);
+    });
+
+    const activeQuizzes = await Quiz.find({
+      active: true,
+      _id: { $nin: quizAttemptedByUserArrayOfIds },
+    });
+    res
+      .status(200)
+      .render("studentProfile", { user: req.user, subjects, activeQuizzes });
   } catch (err) {
     next(err);
   }
