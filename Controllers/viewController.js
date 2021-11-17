@@ -96,6 +96,7 @@ exports.getQuizResultPage = async (req, res, next) => {
       quiz: req.params.id,
       user: req.user._id,
     });
+    console.log(result);
     res.status(200).render("quizResult", { result });
   } catch (err) {
     next(err);

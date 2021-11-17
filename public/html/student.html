@@ -41,9 +41,9 @@
                 <div class="col-3">
                   <div class="list-group" id="list-tab" role="tablist">
                     
-                    <a class="list-group-item list-group-item-action " id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home"><i class="fas fa-home"></i> Dashboard</a>
+                    <a class="list-group-item list-group-item-action " id="list-attempts" data-toggle="list" href="#list-home" role="tab" aria-controls="home"><i class="fas fa-home"></i> Dashboard</a>
                     <a class="list-group-item list-group-item-action active" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile"><i class="fas fa-id-card"></i> Profile</a><br>
-                    <h4>Action</h4>
+                    <h5>Categories</h5>
                     <a  class="list-group-item list-group-item-action" id="list-messages-list"  data-toggle="list" href="#list-all" role="tab" aria-controls="messages"><i class="fas fa-list"></i> All Categories</a>
                     <!-- Loop Here -->
                     <a class="list-group-item list-group-item-action" id="list-profile-list " data-toggle="list" href="#list-filtered" role="tab" aria-controls="profile"><i class="fas fa-question-circle"></i> C++</a>
@@ -52,7 +52,94 @@
                 </div>
                 <div class="col-9">
                   <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade" id="list-home" role="tabpanel" aria-labelledby="list-home-list"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui, unde facere. Cumque impedit ab voluptates corporis expedita, tempore temporibus reprehenderit neque assumenda veritatis ullam repellendus natus excepturi mollitia deserunt dolorum!</div>
+                    <div class="tab-pane fade" id="list-home" role="tabpanel" aria-labelledby="list-attempts"> 
+                      <div class="card">
+                      <div class="card-header text-center">
+                       <h4>Attempted Quizzes</h4>
+                       </div>
+                      
+                       <div class="card-body">
+                        
+                        <div class="col-sm-12">
+                          <div class="card" >
+                            <div class="card-body" id="attemptInfo" >
+                            <b> <h5 class="card-title">Quiz title</h5></b> 
+                              <h6 class="card-subtitle mb-2 text-muted">Subject</h6>
+                              <p class="card-text">Quiz Description Some quick example text to build on the card title and make up the bulk of the card's content. <br> 
+                               <table class="table " >
+                                 <tr>
+                                   <td>
+                                     Marks Obtained: 50
+  
+                                   </td>
+                                   <td>
+                                     Max Marks: 100
+                                   </td>
+                                 </tr>
+                                 <tr>
+                                   <td>
+                                     Questions Attempted: 5
+                                   </td>
+                                   <td>
+                                     Correct Answers: 5
+                                   </td>
+                                 </tr>
+                               </table>
+                               <h6 class="card-subtitle mb-2 text-muted">Date Attempted: 17/11/2021</h6>
+                               
+                              </p>
+                              
+                           
+                            
+                            </div>
+                          </div>
+                        </div>
+                       <div class="col-sm-12">
+                        <div class="card" >
+                          <div class="card-body" id="attemptInfo">
+                            <b> <h5  class="card-title">Quiz title</h5></b>
+                            <h6 class="card-subtitle mb-2 text-muted">Subject</h6>
+                            <p class="card-text">Quiz Description Some quick example text to build on the card title and make up the bulk of the card's content. <br> 
+                             <table class="table " >
+                               <tr>
+                                 <td>
+                                   Marks Obtained: 50
+
+                                 </td>
+                                 <td>
+                                   Max Marks: 100
+                                 </td>
+                               </tr>
+                               <tr>
+                                 <td>
+                                   Questions Attempted: 5
+                                 </td>
+                                 <td>
+                                   Correct Answers: 5
+                                 </td>
+                               </tr>
+                             </table>
+                             <h6 class="card-subtitle mb-2 text-muted">Date Attempted: 17/11/2021</h6>
+                             
+                            </p>
+                            
+                         
+                          
+                          </div>
+                        </div>
+                      </div>
+                    
+                         
+                       </div>
+                         
+                         <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+                         
+                      
+                       <div class="card-footer text-center text-muted">
+                         Engage '21
+                       </div>
+                     </div>
+                    </div>
                     <div class="tab-pane fade  show active" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
                       <div class="card text-center">
                       
