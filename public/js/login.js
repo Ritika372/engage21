@@ -13,10 +13,8 @@ export const login = async (email, password) => {
     });
     if (res.data.status === "success") {
       showAlert("success", "Logged In successfully!");
-      const id = res.data.status.data.user.id;
-      console.log(id);
       window.setTimeout(() => {
-        location.assign("/profile");
+        location.assign("/home");
       }, 1500);
     }
   } catch (err) {

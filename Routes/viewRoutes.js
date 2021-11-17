@@ -10,12 +10,11 @@ router.use(authController.protect);
 
 router.get("/quizzes/:id/attemptQuiz", viewController.getRandomQuestionsOfQuizById);
 router.get("/quizzes/:id/result", viewController.getQuizResultPage);
-router.get("/studentProfile", viewController.getStudentProfilePage);
-
+router.get("/home", viewController.getProfilePage);
 
 router.use(authController.restrictTo("admin"));
 
-router.get("/profile", viewController.getAdminProfilePage);
+
 router.get("/subjects", viewController.getSubjectPage);
 router.get("/addSubject", viewController.getAddSubjectPage);
 router.get("/quizzes", viewController.getQuizPage);

@@ -23,7 +23,23 @@ exports.getUser = async (req, res, next) => {
     if (!user) {
       return next(new customError("User doens't exist.", 400));
     }
+    res.status(200).json({
+      status: "success",
+      data: {
+        user,
+      },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
 
+exports.getOneUser = async (req, res, next) => {
+  try {
+    const user = User.findById(req.params.id);
+    if (!user) {
+      return next(new customError("User doens't exist.", 400));
+    }
     res.status(200).json({
       status: "success",
       data: {

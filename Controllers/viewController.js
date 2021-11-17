@@ -11,14 +11,6 @@ exports.getSignUpForm = async (req, res, next) => {
   res.status(200).render("signup");
 };
 
-exports.getAdminProfilePage = async (req, res, next) => {
-  try {
-    res.status(200).render("profile");
-  } catch (err) {
-    next(err);
-  }
-};
-
 exports.getSubjectPage = async (req, res, next) => {
   try {
     const subjects = await Subject.find();
@@ -103,8 +95,13 @@ exports.getQuizResultPage = async (req, res, next) => {
   }
 };
 
-exports.getStudentProfilePage = async (req, res, next) => {
+exports.getProfilePage = async (req, res, next) => {
   try {
+    if(req.user.role === "admin") {
+      res
+      .status(200)
+      .render("profile");
+    }
     const subjects = await Subject.find();
     const quizAttemptedByUser = await Result.find(
       { user: req.user._id },
