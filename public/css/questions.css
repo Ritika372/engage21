@@ -115,3 +115,10 @@ table {
 #ques_body {
   padding-top: 1%;
 }
+
+.box{
+  background-color: white;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 2px;
+}

@@ -8,11 +8,13 @@ router.get("/signup", viewController.getSignUpForm);
 
 router.use(authController.protect);
 
-router.get("/profile", viewController.getProfilePage);
+
 router.get("/activeQuizzes", viewController.getActiveQuizzes);
+router.get("/quizzes/:id/attemptQuiz", viewController.getRandomQuestionsOfQuizById);
 
 router.use(authController.restrictTo("admin"));
 
+router.get("/profile", viewController.getAdminProfilePage);
 router.get("/subjects", viewController.getSubjectPage);
 router.get("/addSubject", viewController.getAddSubjectPage);
 router.get("/quizzes", viewController.getQuizPage);

@@ -11,14 +11,9 @@ exports.getSignUpForm = async (req, res, next) => {
   res.status(200).render("signup");
 };
 
-exports.getProfilePage = async (req, res, next) => {
+exports.getAdminProfilePage = async (req, res, next) => {
   try {
-    const subjects = await Subject.find();
-    res.status(200).render("profile", {
-      user: req.user,
-      home: req.user.role === "admin" ? "Home" : "Dashboard",
-      subjects,
-    });
+    res.status(200).render("profile");
   } catch (err) {
     next(err);
   }
@@ -41,6 +36,7 @@ exports.getAddSubjectPage = async (req, res, next) => {
 //show only those quizzes which are active and not attempted by user.
 exports.getActiveQuizzes = async (req, res, next) => {
   try {
+    const subjects = await Subject.find();
     const quizAttemptedByUser = await Result.find(
       { user: req.user._id },
       { _id: 1 }
@@ -50,12 +46,10 @@ exports.getActiveQuizzes = async (req, res, next) => {
       _id: { $nin: quizAttemptedByUser },
     });
     console.log(activeQuizzes);
-    // const filteredQuizzes = activeQuizzes.filter((quiz) => {
-    //   if (quizAttemptedByUser.includes(quiz)) return false;
-    //   return true;
-    // });
 
-    res.status(200).render("activeQuizzes", { quizzes: activeQuizzes });
+    res
+      .status(200)
+      .render("activeQuizzes", { quizzes: activeQuizzes, subjects });
   } catch (err) {
     next(err);
   }
@@ -79,22 +73,41 @@ exports.getAddQuizPage = async (req, res, next) => {
   }
 };
 
-exports.getQuestionsOfQuizById = async (req,res,next) => {
-  try{
+exports.getQuestionsOfQuizById = async (req, res, next) => {
+  try {
     const quizId = req.params.id;
-    const questions = await Question.find({quiz: quizId});
+    const questions = await Question.find({ quiz: quizId });
     console.log(`/quizzes/${quizId}/addQuestion`);
-    res.status(200).render("questions", {questions, link : `/quizzes/${quizId}/addQuestion`} );
-  } catch(err) {
+    res.status(200).render("questions", {
+      questions,
+      link: `/quizzes/${quizId}/addQuestion`,
+    });
+  } catch (err) {
     next(err);
   }
-}
+};
 
-exports.getAddQuestionPage = async(req,res,next)=> {
-  try{
-    res.status(200).render("addQues", { quizId : req.params.id} );
-
-  } catch(err) {
+exports.getAddQuestionPage = async (req, res, next) => {
+  try {
+    res.status(200).render("addQues", { quizId: req.params.id });
+  } catch (err) {
     next(err);
   }
-}
+};
+
+exports.getRandomQuestionsOfQuizById = async (req, res, next) => {
+  try {
+    const quiz = await Quiz.findById(req.params.id);
+    let questions = quiz.questions;
+    if (questions.length > quiz.numberOfQuestions) {
+      // Shuffle
+      const shuffled = questions.sort(() => 0.5 - Math.random());
+
+      // Get sub-array of first n elements after shuffled
+      questions = shuffled.slice(0, quiz.numberOfQuestions);
+    }
+    res.status(200).render("attemptQuiz", { quiz, questions });
+  } catch (err) {
+    next(err);
+  }
+};

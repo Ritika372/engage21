@@ -3,11 +3,15 @@ import "@babel/polyfill";
 import { login, signup } from "./login";
 import { addSubject } from "./subject";
 import { addQuiz } from "./quiz";
+import {addQuestion} from "./question";
 
 const loginForm = document.getElementById("login-form");
 const signupForm = document.getElementById("signup-form");
 const addSubjectForm = document.getElementById("addSubject-form");
 const addQuizForm = document.getElementById("addQuiz-form");
+const addQuesForm = document.getElementById("addQue-form");
+const submitQuizForm = document.getElementById("submitQuiz-form");
+
 const questionsButton = document.getElementById("open-questions");
 
 if (loginForm) {
@@ -63,10 +67,37 @@ if (addQuizForm) {
   });
 }
 
-if(questionsButton) {
-  questionsButton.addEventListener("click", (event) => {
-    const quizId = questionsButton.dataset.quizid;
+if(addQuesForm) {
+  addQuesForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    let data = {};
+    data.content = document.getElementById("question-content").value;
+    data.quiz = document.getElementById("addQue-submit").dataset.quizid;
+    let options = [];
+    document.querySelectorAll('#option').forEach((input) => {
+      if(input.value) options.push(input.value);
+    });
+    data.options = options;
+    data.answer = document.getElementById("answer").value;
     
-    location.assign(`/quizzes/${quizId}/questions`);
+    addQuestion(data);
+  });
+}
+
+if(submitQuizForm) {
+  submitQuizForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const numberOfQuestions = submitQuizForm.dataset.numberofquestions;
+    for(let i =0;i<numberOfQuestions;i+=1)
+
   })
 }
+
+if (questionsButton) {
+  questionsButton.addEventListener("click", (event) => {
+    const quizId = questionsButton.dataset.quizid;
+
+    location.assign(`/quizzes/${quizId}/questions`);
+  });
+}
+

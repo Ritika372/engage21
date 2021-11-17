@@ -64,7 +64,7 @@
               <a
                 class="list-group-item list-group-item-action"
                 id="list-profile-list "
-                href="admin_profile.html"
+                href="/profile"
                 role="tab"
                 aria-controls="profile"
                 ><i class="fas fa-id-card"></i> Profile</a
@@ -72,7 +72,7 @@
               <a
                 class="list-group-item list-group-item-action"
                 id="list-messages-list"
-                href="categories.html"
+                href="/subjects"
                 role="tab"
                 aria-controls="messages"
                 ><i class="fas fa-list"></i> Subject</a
@@ -80,7 +80,7 @@
               <a
                 class="list-group-item list-group-item-action"
                 id="list-profile-list"
-                href="add_category.html"
+                href="/addSubject"
                 role="tab"
                 aria-controls="profile"
                 ><i class="fas fa-plus-circle"></i> Add Subject</a
@@ -88,7 +88,7 @@
               <a
                 class="list-group-item list-group-item-action"
                 id="list-profile-list"
-                href="quiz.html"
+                href="/quizzes"
                 role="tab"
                 aria-controls="profile"
                 ><i class="fas fa-question-circle"></i> Quizzes</a
@@ -96,7 +96,7 @@
               <a
                 class="list-group-item list-group-item-action"
                 id="list-profile-list"
-                href="add_quiz.html"
+                href="/addQuiz"
                 role="tab"
                 aria-controls="profile"
                 ><i class="fas fa-plus"></i> Add Quiz</a
@@ -136,7 +136,7 @@
                   </div>
 
                   <div class="card-body">
-                    <form>
+                    <form id = "addQue-form">
                       <div class="row">
                         <div class="col offset-3">
                           <div class="form-group row">
@@ -151,7 +151,7 @@
                               <div class="floating-label-group">
                                 <textarea
                                   style="margin-left: -1%"
-                                  id="input"
+                                  id="question-content"
                                   class="form-control"
                                   autocomplete="off"
                                   autofocus
@@ -172,7 +172,7 @@
                                   <div class="floating-label-group">
                                     <input
                                       type="text"
-                                      id="input"
+                                      id="option"
                                       name="input1"
                                       class="form-control"
                                       autocomplete="off"
@@ -195,7 +195,7 @@
                                   <div class="floating-label-group">
                                     <input
                                       type="text"
-                                      id="input"
+                                      id="option"
                                       name="input2"
                                       class="form-control"
                                       autocomplete="off"
@@ -220,7 +220,7 @@
                                   <div class="floating-label-group">
                                     <input
                                       type="text"
-                                      id="input"
+                                      id="option"
                                       name="input3"
                                       class="form-control"
                                       autocomplete="off"
@@ -243,7 +243,7 @@
                                   <div class="floating-label-group">
                                     <input
                                       type="text"
-                                      id="input"
+                                      id="option"
                                       name="input4"
                                       class="form-control"
                                       autocomplete="off"
@@ -267,7 +267,7 @@
                               <div class="floating-label-group">
                                 <select
                                   class="custom-select my-1 mr-sm-2"
-                                  id="input"
+                                  id="answer"
                                 >
                                   <option selected>Choose Answer</option>
                                   <option
@@ -298,7 +298,7 @@
 
                           <br />
                           <div class="form-group row offset-3">
-                            <button type="submit" class="btn btn-primary">
+                            <button id = "addQue-submit" data-quizid = <%= quizId %>  type="submit" class="btn btn-primary">
                               Add Question
                             </button>
                           </div>
@@ -346,6 +346,7 @@
         if (this.value) {
           document.getElementById("option1").hidden = false;
           document.getElementById("option1").innerHTML = this.value;
+          document.getElementById("option1").value = this.value;
         } else {
           document.getElementById("option1").hidden = true;
         }
@@ -356,6 +357,7 @@
         if (this.value) {
           document.getElementById("option2").hidden = false;
           document.getElementById("option2").innerHTML = this.value;
+          document.getElementById("option2").value = this.value;
         } else {
           document.getElementById("option2").hidden = true;
         }
@@ -366,6 +368,7 @@
         if (this.value) {
           document.getElementById("option3").hidden = false;
           document.getElementById("option3").innerHTML = this.value;
+          document.getElementById("option3").value = this.value;
         } else {
           document.getElementById("option3").hidden = true;
         }
@@ -376,6 +379,7 @@
         if (this.value) {
           document.getElementById("option4").hidden = false;
           document.getElementById("option4").innerHTML = this.value;
+          document.getElementById("option4").value = this.value;
         } else {
           document.getElementById("option4").hidden = true;
         }

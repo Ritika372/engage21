@@ -1,0 +1,97 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Start Quiz</title>
+    <link rel="icon" href="../../assets/book-fill.png" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../../css/questions.css" />
+    <script
+      src="https://kit.fontawesome.com/d46d25282a.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="bootstrap-wrapper">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-2"><br>
+            <div class = "box">
+              <p><b>Important Notice</b></p>
+              <p>We are monitoring all the activity on this browser. Please try to give the quiz honestly.</p>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <br />
+            <form data-numberofquestions = <%= quiz.numberOfQuestions %> id = "submitQuiz-form">
+            <div class="card text-center">
+              <div class="card-header"> <b><%= quiz.name %> </b></div>
+              <div class="card-body">
+                
+                  <table class="table">
+                    <tbody>
+                      <% questions.forEach((question, index) => { %>
+                      <tr>
+                        <td id="property"><i><%= `Ques:${index+1}`%></i></td>
+                        <td id= <%= `questionId${index}` %> data-queid = <%= question._id %> >
+                          <div class="card" id="ques_card">
+                            <div class="card-body" id="ques_body">
+                              <p><%= question.content %></p>
+                              <% question.options.forEach((option,index) => { %>
+                              <div class="radio">
+                                <label>
+                                  <input
+                                    type="radio"
+                                    name= <%= `option${index}` %>
+                                    id= <%= `option${index}` %>
+                                    value="option1"
+                                  />
+                                  <%= option %>
+                                </label>
+                              </div>
+                              <% }) %>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <% }) %>
+                    </tbody>
+                  </table>
+                
+              </div>
+              <div class="card-footer text-muted">
+                  <button class="btn btn-primary" data-quizid=<%= quiz._id%> type="submit" >Submit Quiz</button>
+              </div>
+            </form>
+            </div>
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="../../js/bundle.js"></script>
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"
+  ></script>
+</html>
