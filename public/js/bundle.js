@@ -8946,7 +8946,7 @@ exports.addSubject = addSubject;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.addQuiz = void 0;
+exports.evaluateQuiz = exports.addQuiz = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -9005,6 +9005,57 @@ var addQuiz = /*#__PURE__*/function () {
 }();
 
 exports.addQuiz = addQuiz;
+
+var evaluateQuiz = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(questions, markedAnswers, quizId) {
+    var res;
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return (0, _axios.default)({
+              method: "POST",
+              url: "http://localhost:3000/api/quiz/".concat(quizId),
+              data: {
+                questions: questions,
+                markedAnswers: markedAnswers
+              }
+            });
+
+          case 3:
+            res = _context2.sent;
+
+            if (res.data.status === "success") {
+              (0, _alert.showAlert)("success", "Quiz submitted successfully!");
+              window.setTimeout(function () {
+                location.assign("/quizzes/".concat(quizId, "/result"));
+              }, 1500);
+            }
+
+            _context2.next = 10;
+            break;
+
+          case 7:
+            _context2.prev = 7;
+            _context2.t0 = _context2["catch"](0);
+            (0, _alert.showAlert)("error", _context2.t0.response.data.message);
+
+          case 10:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 7]]);
+  }));
+
+  return function evaluateQuiz(_x2, _x3, _x4) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+exports.evaluateQuiz = evaluateQuiz;
 },{"axios":"../../node_modules/axios/index.js","./alert":"alert.js"}],"question.js":[function(require,module,exports) {
 "use strict";
 
@@ -9402,7 +9453,7 @@ if (addQuesForm) {
     data.content = document.getElementById("question-content").value;
     data.quiz = document.getElementById("addQue-submit").dataset.quizid;
     var options = [];
-    document.querySelectorAll('#option').forEach(function (input) {
+    document.querySelectorAll("#option").forEach(function (input) {
       if (input.value) options.push(input.value);
     });
     data.options = options;
@@ -9415,7 +9466,28 @@ if (submitQuizForm) {
   submitQuizForm.addEventListener("submit", function (event) {
     event.preventDefault();
     var numberOfQuestions = submitQuizForm.dataset.numberofquestions;
-    console.log(numberOfQuestions);
+    var quizId = submitQuizForm.dataset.quizid;
+    var questions = [];
+    var markedAnswers = [];
+
+    for (var i = 0; i < numberOfQuestions; i += 1) {
+      var queId = "questionId".concat(i);
+
+      if (document.getElementById(queId)) {
+        questions.push(document.getElementById(queId).dataset.queid);
+      }
+
+      var markedAns = document.getElementsByName("option".concat(i));
+
+      for (var _i = 0; _i < markedAns.length; _i++) {
+        if (markedAns[_i].checked) {
+          markedAnswers.push(markedAns[_i].value);
+          break;
+        }
+      }
+    }
+
+    (0, _quiz.evaluateQuiz)(questions, markedAnswers, quizId);
   });
 }
 

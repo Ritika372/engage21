@@ -111,3 +111,12 @@ exports.getRandomQuestionsOfQuizById = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.getQuizResultPage = async (req, res, next) => {
+  try {
+    const result = await Result.find({ quiz: req.params.id, user: req.user._id });
+    res.status(200).render("quizResult", {result});
+  } catch (err) {
+    next(err);
+  }
+};
