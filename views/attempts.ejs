@@ -53,62 +53,53 @@
           <div class="col-3" id="printvisibility">
             <div class="list-group" id="list-tab" role="tablist">
               <a
-                class="list-group-item list-group-item-action"
-                id="list-home-list"
-                data-toggle="list"
-                href="#list-home"
-                role="tab"
-                aria-controls="home"
-                ><i class="fas fa-home"></i> Home</a
-              >
-              <a
-                class="list-group-item list-group-item-action"
-                id="list-profile-list"
-                href="admin_profile.html"
-                role="tab"
-                aria-controls="profile"
-                ><i class="fas fa-id-card"></i> Profile</a
-              >
-              <a
-                class="list-group-item list-group-item-action"
-                id="list-messages-list"
-                href="categories.html"
-                role="tab"
-                aria-controls="messages"
-                ><i class="fas fa-list"></i> Categories</a
-              >
-              <a
-                class="list-group-item list-group-item-action"
-                id="list-profile-list"
-                href="add_category.html"
-                role="tab"
-                aria-controls="profile"
-                ><i class="fas fa-plus-circle"></i> Add Category</a
-              >
-              <a
-                class="list-group-item list-group-item-action"
-                id="list-profile-list"
-                href="quiz.html"
-                role="tab"
-                aria-controls="profile"
-                ><i class="fas fa-question-circle"></i> Quizzes</a
-              >
-              <a
-                class="list-group-item list-group-item-action"
-                id="list-profile-list"
-                href="add_quiz.html"
-                role="tab"
-                aria-controls="profile"
-                ><i class="fas fa-plus"></i> Add Quiz</a
-              >
-              <a
-                class="list-group-item list-group-item-action"
-                id="list-profile-list"
-                href="admin_profile.html"
-                role="tab"
-                aria-controls="profile"
-                ><i class="fas fa-sign-out-alt"></i> Logout</a
-              >
+              class="list-group-item list-group-item-action"
+              id="list-profile-list "
+              href="/home"
+              role="tab"
+              aria-controls="profile"
+              ><i class="fas fa-id-card"></i> Profile</a
+            >
+            <a
+              class="list-group-item list-group-item-action"
+              id="list-messages-list"
+              href="/subjects"
+              role="tab"
+              aria-controls="messages"
+              ><i class="fas fa-list"></i> Subject</a
+            >
+            <a
+              class="list-group-item list-group-item-action"
+              id="list-profile-list"
+              href="/addSubject"
+              role="tab"
+              aria-controls="profile"
+              ><i class="fas fa-plus-circle"></i> Add Subject</a
+            >
+            <a
+              class="list-group-item list-group-item-action"
+              id="list-profile-list"
+              href="/quizzes"
+              role="tab"
+              aria-controls="profile"
+              ><i class="fas fa-question-circle"></i> Quizzes</a
+            >
+            <a
+              class="list-group-item list-group-item-action"
+              id="list-profile-list"
+              href="/addQuiz"
+              role="tab"
+              aria-controls="profile"
+              ><i class="fas fa-plus"></i> Add Quiz</a
+            >
+            <a
+              class="list-group-item list-group-item-action"
+              id="list-profile-list"
+              href="admin_profile.html"
+              role="tab"
+              aria-controls="profile"
+              ><i class="fas fa-sign-out-alt"></i> Logout</a
+            >
             </div>
           </div>
           <div class="col-9" id="#section-to-print">   
@@ -119,7 +110,7 @@
                 role="tabpanel"
                 aria-labelledby="list-profile-list"
               >
-                <div class="card " >
+                <div class="card"  id="printableArea">
                   <div class="card-header text-center" >Quiz Results</div>
 
                   <div class="card-body">
@@ -137,7 +128,7 @@
                        </tr>
                        </table>
 
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="print">
                       <thead>
                         <tr>
                           <th scope="col">#</th>
@@ -161,8 +152,11 @@
                       </tbody>
                     </table>
                    <div style="text-align: center;" id="#printvisibility">
-                    <a onclick=" window.print();" style="color: white; margin-left: auto;margin-right: auto;" class="btn btn-primary">Print</a>
-                  </div>
+                    <a onclick="printDiv('printableArea')" style="color: white; margin-left: auto;margin-right: auto;" class="btn btn-primary">Print</a>
+                    <a onclick="fnExcelReport();" style="color: white; margin-left: auto;margin-right: auto;" class="btn btn-secondary">Download .xls</a>
+                   
+                    </div>
+                    <iframe id="txtArea1" style="display:none"></iframe>
                   </div>
                   <div class="card-footer text-center text-muted">Engage '21</div>
                 </div>
@@ -173,7 +167,7 @@
       </div>
     </div>
   </body>
-
+<script src="../../js/attempts.js"></script>
   <script src="../../js/bundle.js"></script>
   <script
     src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
