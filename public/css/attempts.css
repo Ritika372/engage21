@@ -77,7 +77,9 @@ input:not(:focus):valid ~ .floating-label {
 .navbar {
   background-image: linear-gradient(180deg, #171f55, #88e0ef);
 }
-
+#description {
+  margin-bottom: 2%;
+}
 img {
   max-width: 150px;
   max-height: 150px;

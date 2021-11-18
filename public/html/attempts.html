@@ -111,8 +111,8 @@
               >
             </div>
           </div>
-          <div class="col-9" id="#section-to-print">   
-            <div class="tab-content" id="nav-tabContent">
+          <div class="col-9" >   
+            <div class="tab-content" id="nav-tabContent" >
               <div
                 class="tab-pane fade"
                 id="list-home"
@@ -130,26 +130,48 @@
                 role="tabpanel"
                 aria-labelledby="list-profile-list"
               >
-                <div class="card " >
+                <div class="card "  id="printableArea">
                   <div class="card-header text-center" >Quiz Results</div>
 
                   <div class="card-body">
+                    <table id="print">
+                      <tr>
+                        <td>
                     <b> <h5  class="card-title">Quiz title</h5></b>
-                    <h6 class="card-subtitle mb-2 text-muted">Subject</h6>
-                    <p class="card-text">Quiz Description Some quick example text to build on the card title and make up the bulk of the card's content. <br> 
-                    </p> <table class="table " >
-                       <tr>
-                         <td>
-                           Total Questions: 10
-
-                         </td>
-                         <td>
-                           Max Marks: 100
-                         </td>
-                       </tr>
-                       </table>
-
-                    <table class="table table-bordered">
+                  </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h6 class="card-subtitle mb-2 text-muted">Subject</h6>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="description" 
+                      class="card-text">Quiz Description Some quick example text to build on the card title and make up the bulk of the card's content.  </p> 
+                    
+                    </td>
+                  </tr>
+                   <tr>
+                     <td>
+                      <table class="table" >
+                        <tr>
+                          <td>
+                            Total Questions: 10
+ 
+                          </td>
+                          <td>
+                            Max Marks: 100
+                          </td>
+                        </tr>
+                        </table>
+ 
+                     </td>
+                   </tr>
+                   <tr>
+                     <td>
+                   
+                    <table class="table table-bordered" >
                       <thead>
                         <tr>
                           <th scope="col">#</th>
@@ -176,11 +198,16 @@
                         </tr>
                         
                       </tbody>
+                    </td>
+                   </tr>
                     </table>
+                  </table>
                    <div style="text-align: center;" id="#printvisibility">
-                    <a onclick=" window.print();" style="color: white; margin-left: auto;margin-right: auto;" class="btn btn-primary">Print</a>
+                    <a onclick="fnExcelReport();" style="color: white; margin-left: auto;margin-right: auto;" class="btn btn-secondary">Download .xls</a>
+                    <a onclick="printDiv('printableArea')" style="color: white; margin-left: auto;margin-right: auto;" class="btn btn-primary">Print</a>
                   </div>
-                    
+                  <iframe id="txtArea1" style="display:none"></iframe>
+                   
                  
                     
                     <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
@@ -217,7 +244,9 @@
       </div>
     </div>
   </body>
-
+  <script src="../js/attempts.js">
+                     
+  </script>
   <script src="../js/bundle.js"></script>
   <script
     src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
