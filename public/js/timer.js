@@ -106,7 +106,7 @@ function setRemainingPathColor(timeLeft) {
   } else if (timeLeft <= warning.threshold) {
    // console.log("Time FInish Almosts");
    if(flag==0){
-    showAlert("error", "Warning!! Quiz will be submitted in 30s");
+    showAlert("error", "Warning!! Quiz will be submitted in 10s");
     flag=1;
    }
     document

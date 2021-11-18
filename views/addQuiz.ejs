@@ -228,8 +228,9 @@
                                 <select
                                   class="custom-select my-1 mr-sm-2"
                                   id="addQuiz-subject"
+                                  required
                                 >
-                                  <option selected>Choose Subject</option>
+                                  <option value="" disabled selected>Choose Subject</option>
                                   <% subjects.forEach((subject) => { %>
                                   <option value= <%= subject._id %> >
                                     <%= subject.name %>

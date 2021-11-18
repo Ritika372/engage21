@@ -9541,16 +9541,15 @@ if (submitQuizForm) {
     var markedAnswers = [];
 
     for (var i = 0; i < numberOfQuestions; i += 1) {
-      var queId = "questionId".concat(i);
-
-      if (document.getElementById(queId)) {
-        questions.push(document.getElementById(queId).dataset.queid);
-      }
+      var queId = "questionId".concat(i); // if (document.getElementById(queId)) {
+      //   questions.push(document.getElementById(queId).dataset.queid);
+      // }
 
       var markedAns = document.getElementsByName("option".concat(i));
 
       for (var _i = 0; _i < markedAns.length; _i++) {
         if (markedAns[_i].checked) {
+          questions.push(document.getElementById(queId).dataset.queid);
           markedAnswers.push(markedAns[_i].value);
           break;
         }
