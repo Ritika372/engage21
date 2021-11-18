@@ -13,6 +13,7 @@ const addQuesForm = document.getElementById("addQue-form");
 const submitQuizForm = document.getElementById("submitQuiz-form");
 
 const questionsButton = document.getElementsByName("open-questions");
+const startQuizButtons = document.getElementsByName("start-quiz");
 
 if (loginForm) {
   loginForm.addEventListener("submit", (event) => {
@@ -112,11 +113,20 @@ if (submitQuizForm) {
 }
 
 if (questionsButton) {
-  console.log(questionsButton);
   questionsButton.forEach((btn) => {
     btn.addEventListener("click", (event) => {
       const quizId = btn.dataset.quizid;
       location.assign(`/quizzes/${quizId}/questions`);
+    });
+  });
+}
+
+if (startQuizButtons) {
+  console.log(startQuizButtons);
+  startQuizButtons.forEach((btn) => {
+    btn.addEventListener("click", (event) => {
+      const quizId = btn.dataset.quizid;
+      location.assign(`/quizzes/${quizId}/attemptQuiz`);
     });
   });
 }

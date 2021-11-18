@@ -2,6 +2,7 @@ const Subject = require("../Model/subjectModel");
 const Quiz = require("../Model/quizModel");
 const Result = require("../Model/resultModel");
 const Question = require("../Model/questionModel");
+const customError = require("../utils/customError");
 
 exports.getLoginForm = async (req, res, next) => {
   res.status(200).render("login");
@@ -47,7 +48,6 @@ exports.getUpdateProfilePage = async (req, res, next) => {
   res.status(200).render("updateProfile", { user: req.user });
 };
 
-
 exports.getQuestionsOfQuizById = async (req, res, next) => {
   try {
     const quizId = req.params.id;
@@ -72,6 +72,11 @@ exports.getAddQuestionPage = async (req, res, next) => {
 
 exports.getRandomQuestionsOfQuizById = async (req, res, next) => {
   try {
+    const result = await Result.find({user: req.user._id, quiz : req.params.id});
+    if(result.length === 1) {
+      return next(new customError("You have already attempted the quiz!", 400));
+    }
+    
     const quiz = await Quiz.findById(req.params.id);
     let questions = quiz.questions;
     if (questions.length > quiz.numberOfQuestions) {
@@ -102,17 +107,12 @@ exports.getQuizResultPage = async (req, res, next) => {
 
 exports.getProfilePage = async (req, res, next) => {
   try {
-    if(req.user.role === "admin") {
-      res
-      .status(200)
-      .render("profile");
+    if (req.user.role === "admin") {
+      res.status(200).render("profile");
     }
+    
     const subjects = await Subject.find();
-    const quizAttemptedByUser = await Result.find(
-      { user: req.user._id },
-    );
-
-    console.log(quizAttemptedByUser);
+    const quizAttemptedByUser = await Result.find({ user: req.user._id });
 
     let quizAttemptedByUserArrayOfIds = [];
 
@@ -122,11 +122,18 @@ exports.getProfilePage = async (req, res, next) => {
 
     const activeQuizzes = await Quiz.find({
       active: true,
+      "questions.0": { $exists: true },
       _id: { $nin: quizAttemptedByUserArrayOfIds },
     });
+    console.log(activeQuizzes);
     res
       .status(200)
-      .render("studentProfile", { user: req.user, subjects, activeQuizzes, quizAttemptedByUser });
+      .render("studentProfile", {
+        user: req.user,
+        subjects,
+        activeQuizzes,
+        quizAttemptedByUser,
+      });
   } catch (err) {
     next(err);
   }

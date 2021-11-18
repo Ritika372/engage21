@@ -272,7 +272,7 @@
                                 quiz.maxMarks %>
                               </i>
                             </p>
-                            <button type="button" class="btn btn-info">
+                            <button name = "start-quiz" data-quizid = <%= quiz._id %> type="button" class="btn btn-info">
                               Start
                             </button>
                           </div>
@@ -315,7 +315,7 @@
                                 quiz.maxMarks %>
                               </i>
                             </p>
-                            <button type="button" class="btn btn-info">
+                            <button name = "start-quiz" data-quizid = <%= quiz._id %> type="button" class="btn btn-info">
                               Start
                             </button>
                           </div>
@@ -335,6 +335,7 @@
     </div>
   </body>
 
+  <script src = "../js/bundle.js"></script>
   <script>
     var ele=document.getElementById("switch");
     ele.onclick=showForm;

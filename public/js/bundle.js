@@ -9399,6 +9399,7 @@ var addQuizForm = document.getElementById("addQuiz-form");
 var addQuesForm = document.getElementById("addQue-form");
 var submitQuizForm = document.getElementById("submitQuiz-form");
 var questionsButton = document.getElementsByName("open-questions");
+var startQuizButtons = document.getElementsByName("start-quiz");
 
 if (loginForm) {
   loginForm.addEventListener("submit", function (event) {
@@ -9492,11 +9493,20 @@ if (submitQuizForm) {
 }
 
 if (questionsButton) {
-  console.log(questionsButton);
   questionsButton.forEach(function (btn) {
     btn.addEventListener("click", function (event) {
       var quizId = btn.dataset.quizid;
       location.assign("/quizzes/".concat(quizId, "/questions"));
+    });
+  });
+}
+
+if (startQuizButtons) {
+  console.log(startQuizButtons);
+  startQuizButtons.forEach(function (btn) {
+    btn.addEventListener("click", function (event) {
+      var quizId = btn.dataset.quizid;
+      location.assign("/quizzes/".concat(quizId, "/attemptQuiz"));
     });
   });
 }
@@ -9528,7 +9538,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56805" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64856" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
