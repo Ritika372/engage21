@@ -43,23 +43,20 @@
                     <div class="card text-center">
                       
                         <div class="card-header">
-                         Quiz Name Result
+                        <%= result[0].quiz.subject.name %> Result
                         </div>
                         <img  src="../../assets/profile.jpg" alt="">
                         <div class="card-body">
-                          <h5 class="card-title">Ritika Goyal</h5>
+                          <h5 class="card-title"><%= result[0].user.firstName %> <%= result[0].user.lastName %></h5>
                           <table class="table table-hover" >
-                           
                             <tbody>
                               <tr>
-                               
                                 <td id="property">Quiz Title</td>
-                                <td id="value">C++</td>
+                                <td id="value"><%= result[0].quiz.name %></td>
                               </tr>
                               <tr>
-                               
                                 <td id="property">Subject</td>
-                                <td id="value">Programming</td>
+                                <td id="value"><%= result[0].quiz.subject.name %></td>
                               </tr>
                               <tr>
                                
