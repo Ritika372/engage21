@@ -5,7 +5,6 @@ import { addSubject } from "./subject";
 import { addQuiz, evaluateQuiz } from "./quiz";
 import { addQuestion } from "./question";
 
-
 const loginForm = document.getElementById("login-form");
 const signupForm = document.getElementById("signup-form");
 const addSubjectForm = document.getElementById("addSubject-form");
@@ -13,7 +12,7 @@ const addQuizForm = document.getElementById("addQuiz-form");
 const addQuesForm = document.getElementById("addQue-form");
 const submitQuizForm = document.getElementById("submitQuiz-form");
 
-const questionsButton = document.getElementById("open-questions");
+const questionsButton = document.getElementsByName("open-questions");
 
 if (loginForm) {
   loginForm.addEventListener("submit", (event) => {
@@ -108,14 +107,16 @@ if (submitQuizForm) {
       }
     }
 
-    evaluateQuiz(questions,markedAnswers, quizId);
+    evaluateQuiz(questions, markedAnswers, quizId);
   });
 }
 
 if (questionsButton) {
-  questionsButton.addEventListener("click", (event) => {
-    const quizId = questionsButton.dataset.quizid;
-
-    location.assign(`/quizzes/${quizId}/questions`);
+  console.log(questionsButton);
+  questionsButton.forEach((btn) => {
+    btn.addEventListener("click", (event) => {
+      const quizId = btn.dataset.quizid;
+      location.assign(`/quizzes/${quizId}/questions`);
+    });
   });
 }

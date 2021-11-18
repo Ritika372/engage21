@@ -76,7 +76,7 @@
                               <h5 class="card-title"><%= quiz.name %></h5>
                               <h6 class="card-subtitle mb-2 text-muted"><%= quiz.subject.name %></h6>
                               <p class="card-text"><%= quiz.description %></p>
-                              <button data-quizid= <%= quiz._id %> id = "open-questions" type="button" class="btn btn-danger" >Questions </button>
+                              <button data-quizid= <%= quiz._id %> name = "open-questions" type="button" class="btn btn-danger" >Questions </button>
                             <button type="button" class="btn btn-light">Max Marks: <%= quiz.maxMarks %></button>
                             <button type="button" class="btn btn-light">Questions: <%= quiz.numberOfQuestions %></button>
                             <button type="button" class="btn btn-danger">Update </button>
@@ -89,7 +89,7 @@
                       </tbody>
                     </table>
                     <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
-                    <a href="add_category.html" class="btn btn-primary"
+                    <a href="/addQuiz" class="btn btn-primary"
                       >Add New Quiz</a
                     >
                   </div>

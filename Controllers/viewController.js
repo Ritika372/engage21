@@ -105,8 +105,9 @@ exports.getProfilePage = async (req, res, next) => {
     const subjects = await Subject.find();
     const quizAttemptedByUser = await Result.find(
       { user: req.user._id },
-      { quiz: 1 }
     );
+
+    console.log(quizAttemptedByUser);
 
     let quizAttemptedByUserArrayOfIds = [];
 
@@ -120,7 +121,7 @@ exports.getProfilePage = async (req, res, next) => {
     });
     res
       .status(200)
-      .render("studentProfile", { user: req.user, subjects, activeQuizzes });
+      .render("studentProfile", { user: req.user, subjects, activeQuizzes, quizAttemptedByUser });
   } catch (err) {
     next(err);
   }

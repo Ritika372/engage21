@@ -31,5 +31,14 @@ const resultSchema = new mongoose.Schema(
   }
 );
 
+resultSchema.pre(/^find/, async function (next) {
+  this.populate({
+    path: "quiz",
+    select: "-questions",
+  });
+  next();
+});
+
+
 const Result = mongoose.model("Result", resultSchema);
 module.exports = Result;
