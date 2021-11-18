@@ -14,7 +14,7 @@ router.get("/home", viewController.getProfilePage);
 
 router.use(authController.restrictTo("admin"));
 
-
+router.get("/updateProfile", viewController.getUpdateProfilePage);
 router.get("/subjects", viewController.getSubjectPage);
 router.get("/addSubject", viewController.getAddSubjectPage);
 router.get("/quizzes", viewController.getQuizPage);

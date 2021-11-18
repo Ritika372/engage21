@@ -43,6 +43,11 @@ exports.getAddQuizPage = async (req, res, next) => {
   }
 };
 
+exports.getUpdateProfilePage = async (req, res, next) => {
+  res.status(200).render("updateProfile", { user: req.user });
+};
+
+
 exports.getQuestionsOfQuizById = async (req, res, next) => {
   try {
     const quizId = req.params.id;

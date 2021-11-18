@@ -25,7 +25,7 @@ a {
   text-decoration: underline;
 }
 
-#input {
+[id^="update"] {
   border: 0ch;
   border-bottom: 1px solid #999;
 }

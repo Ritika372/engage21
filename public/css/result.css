@@ -10,9 +10,9 @@ a {
   width: 50%;
   margin-top: 20px;
   padding-top: 30px;
-  padding-bottom: 100px;
-
-  border-radius: 25px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border-radius: 30px;
   background-color: white;
 }
 .form-title {
