@@ -4,6 +4,7 @@ import { login, signup } from "./login";
 import { addSubject } from "./subject";
 import { addQuiz, evaluateQuiz } from "./quiz";
 import { addQuestion } from "./question";
+import {updateProfile} from "./user";
 
 const loginForm = document.getElementById("login-form");
 const signupForm = document.getElementById("signup-form");
@@ -11,6 +12,7 @@ const addSubjectForm = document.getElementById("addSubject-form");
 const addQuizForm = document.getElementById("addQuiz-form");
 const addQuesForm = document.getElementById("addQue-form");
 const submitQuizForm = document.getElementById("submitQuiz-form");
+const updateProfileForm = document.getElementById("updateProfile-form");
 
 const questionsButton = document.getElementsByName("open-questions");
 const startQuizButtons = document.getElementsByName("start-quiz");
@@ -109,6 +111,19 @@ if (submitQuizForm) {
     }
 
     evaluateQuiz(questions, markedAnswers, quizId);
+  });
+}
+
+if (updateProfileForm) {
+  updateProfileForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    let data = {};
+    data.firstName = document.getElementById("update-firstName").value;
+    data.lastName = document.getElementById("update-lastName").value;
+    data.phone = document.getElementById("update-phone").value;
+    data.email = document.getElementById("update-email").value;
+
+    updateProfile(data);
   });
 }
 

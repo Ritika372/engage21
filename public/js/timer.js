@@ -62,7 +62,6 @@ startTimer();
 
 function onTimesUp() {
   clearInterval(timerInterval);
- 
 }
 
 function startTimer() {
