@@ -64,12 +64,12 @@
                               <tr>
                                
                                 <td id="property">Total Question</td>
-                                <td id="value">10</td>
+                                <td id="value"><%= result[0].quiz.numberOfQuestions %></td>
                               </tr>
                               <tr>
                                
                                 <td id="property">Max Marks</td>
-                                <td id="value">100</td>
+                                <td id="value"><%= result[0].quiz.maxMarks%></td>
                               </tr>
                               <tr>
                                 
@@ -84,7 +84,7 @@
                               <tr>
                                 
                                 <td id="property">Attempt Date</td>
-                                <td id="value"><%= result[0].createdAt %></td>
+                                <td id="value"><%= result[0].createdAt.toLocaleString('en-IN',{ weekday: 'short', year: 'numeric', month: 'long', day: 'numeric', hour : 'numeric',minute: 'numeric'}) %></td>
                               </tr>
                             </tbody>
                           </table>

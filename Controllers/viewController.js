@@ -72,11 +72,14 @@ exports.getAddQuestionPage = async (req, res, next) => {
 
 exports.getRandomQuestionsOfQuizById = async (req, res, next) => {
   try {
-    const result = await Result.find({user: req.user._id, quiz : req.params.id});
-    if(result.length === 1) {
+    const result = await Result.find({
+      user: req.user._id,
+      quiz: req.params.id,
+    });
+    if (result.length === 1) {
       return next(new customError("You have already attempted the quiz!", 400));
     }
-    
+
     const quiz = await Quiz.findById(req.params.id);
     let questions = quiz.questions;
     if (questions.length > quiz.numberOfQuestions) {
@@ -98,7 +101,6 @@ exports.getQuizResultPage = async (req, res, next) => {
       quiz: req.params.id,
       user: req.user._id,
     });
-    console.log(result);
     res.status(200).render("quizResult", { result });
   } catch (err) {
     next(err);
@@ -110,7 +112,7 @@ exports.getProfilePage = async (req, res, next) => {
     if (req.user.role === "admin") {
       res.status(200).render("profile");
     }
-    
+
     const subjects = await Subject.find();
     const quizAttemptedByUser = await Result.find({ user: req.user._id });
 
@@ -125,15 +127,22 @@ exports.getProfilePage = async (req, res, next) => {
       "questions.0": { $exists: true },
       _id: { $nin: quizAttemptedByUserArrayOfIds },
     });
-    console.log(activeQuizzes);
-    res
-      .status(200)
-      .render("studentProfile", {
-        user: req.user,
-        subjects,
-        activeQuizzes,
-        quizAttemptedByUser,
-      });
+    res.status(200).render("studentProfile", {
+      user: req.user,
+      subjects,
+      activeQuizzes,
+      quizAttemptedByUser,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getAttemptsOfQuizById = async (req, res, next) => {
+  try {
+    const results = await Result.find({ quiz: req.params.id });
+    const quiz = await Quiz.findById(req.params.id);
+    res.status(200).render("attempts", { results, quiz });
   } catch (err) {
     next(err);
   }

@@ -36,9 +36,12 @@ resultSchema.pre(/^find/, async function (next) {
     path: "quiz",
     select: "-questions",
   });
+  this.populate({
+    path: "user",
+    select: "firstName lastName",
+  });
   next();
 });
-
 
 const Result = mongoose.model("Result", resultSchema);
 module.exports = Result;

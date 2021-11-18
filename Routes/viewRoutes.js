@@ -21,4 +21,5 @@ router.get("/quizzes", viewController.getQuizPage);
 router.get("/addQuiz", viewController.getAddQuizPage);
 router.get("/quizzes/:id/questions", viewController.getQuestionsOfQuizById);
 router.get("/quizzes/:id/addQuestion", viewController.getAddQuestionPage);
+router.get("/quizzes/:id/attempts", viewController.getAttemptsOfQuizById);
 module.exports = router;

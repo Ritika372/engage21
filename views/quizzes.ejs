@@ -80,7 +80,7 @@
                             <button type="button" class="btn btn-light">Max Marks: <%= quiz.maxMarks %></button>
                             <button type="button" class="btn btn-light">Questions: <%= quiz.numberOfQuestions %></button>
                             <button type="button" class="btn btn-danger">Update </button>
-                            <button type="button" class="btn btn-info">Attempts</button>
+                            <button data-quizid= <%= quiz._id %> name = "show-attempts" type="button" class="btn btn-info">Attempts</button>
                               </td>
                         </tr>
                           <% }) %>

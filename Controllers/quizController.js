@@ -106,13 +106,16 @@ exports.evaluateQuiz = async (req, res, next) => {
     const markedAnswers = req.body.markedAnswers;
     const userId = req.user._id;
 
+    
+
     const maxMarks = quiz.maxMarks;
     let marksScored = 0;
     let correctAnswers = 0;
 
     for (let i = 0; i < questions.length; i += 1) {
       const question = await Question.findById(questions[i]);
-      if (markedAnswers[i] == question.answer) {
+      console.log(markedAnswers[i], question.answer);
+      if (markedAnswers[i] === question.answer) {
         marksScored += Math.round(maxMarks / questions.length);
         correctAnswers++;
       }

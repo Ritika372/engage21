@@ -9468,6 +9468,7 @@ var submitQuizForm = document.getElementById("submitQuiz-form");
 var updateProfileForm = document.getElementById("updateProfile-form");
 var questionsButton = document.getElementsByName("open-questions");
 var startQuizButtons = document.getElementsByName("start-quiz");
+var showAttemptsButtons = document.getElementsByName("show-attempts");
 
 if (loginForm) {
   loginForm.addEventListener("submit", function (event) {
@@ -9587,6 +9588,15 @@ if (startQuizButtons) {
     btn.addEventListener("click", function (event) {
       var quizId = btn.dataset.quizid;
       location.assign("/quizzes/".concat(quizId, "/attemptQuiz"));
+    });
+  });
+}
+
+if (showAttemptsButtons) {
+  showAttemptsButtons.forEach(function (btn) {
+    btn.addEventListener("click", function (event) {
+      var quizId = btn.dataset.quizid;
+      location.assign("/quizzes/".concat(quizId, "/attempts"));
     });
   });
 }

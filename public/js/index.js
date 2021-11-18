@@ -16,6 +16,7 @@ const updateProfileForm = document.getElementById("updateProfile-form");
 
 const questionsButton = document.getElementsByName("open-questions");
 const startQuizButtons = document.getElementsByName("start-quiz");
+const showAttemptsButtons = document.getElementsByName("show-attempts");
 
 if (loginForm) {
   loginForm.addEventListener("submit", (event) => {
@@ -142,6 +143,15 @@ if (startQuizButtons) {
     btn.addEventListener("click", (event) => {
       const quizId = btn.dataset.quizid;
       location.assign(`/quizzes/${quizId}/attemptQuiz`);
+    });
+  });
+}
+
+if (showAttemptsButtons) {
+  showAttemptsButtons.forEach((btn) => {
+    btn.addEventListener("click", (event) => {
+      const quizId = btn.dataset.quizid;
+      location.assign(`/quizzes/${quizId}/attempts`);
     });
   });
 }

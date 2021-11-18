@@ -1,0 +1,193 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Quiz Results</title>
+    <link rel="icon" href="../../assets/book-fill.png" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../../css/attempts.css" />
+    <script
+      src="https://kit.fontawesome.com/d46d25282a.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark navbar-expand-lg">
+      <a class="navbar-brand" href="#"
+        ><i class="fas fa-book"></i> Exam Portal</a
+      >
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto"></ul>
+        <span>
+          <a class="navbar-brand" href="#">Hi Ritika!</a>
+          <a class="navbar-brand" href="#"
+            >Logout <i class="fas fa-sign-out-alt"></i
+          ></a>
+        </span>
+      </div>
+    </nav>
+    <div class="bootstrap-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-3" id="printvisibility">
+            <div class="list-group" id="list-tab" role="tablist">
+              <a
+                class="list-group-item list-group-item-action"
+                id="list-home-list"
+                data-toggle="list"
+                href="#list-home"
+                role="tab"
+                aria-controls="home"
+                ><i class="fas fa-home"></i> Home</a
+              >
+              <a
+                class="list-group-item list-group-item-action"
+                id="list-profile-list"
+                href="admin_profile.html"
+                role="tab"
+                aria-controls="profile"
+                ><i class="fas fa-id-card"></i> Profile</a
+              >
+              <a
+                class="list-group-item list-group-item-action"
+                id="list-messages-list"
+                href="categories.html"
+                role="tab"
+                aria-controls="messages"
+                ><i class="fas fa-list"></i> Categories</a
+              >
+              <a
+                class="list-group-item list-group-item-action"
+                id="list-profile-list"
+                href="add_category.html"
+                role="tab"
+                aria-controls="profile"
+                ><i class="fas fa-plus-circle"></i> Add Category</a
+              >
+              <a
+                class="list-group-item list-group-item-action"
+                id="list-profile-list"
+                href="quiz.html"
+                role="tab"
+                aria-controls="profile"
+                ><i class="fas fa-question-circle"></i> Quizzes</a
+              >
+              <a
+                class="list-group-item list-group-item-action"
+                id="list-profile-list"
+                href="add_quiz.html"
+                role="tab"
+                aria-controls="profile"
+                ><i class="fas fa-plus"></i> Add Quiz</a
+              >
+              <a
+                class="list-group-item list-group-item-action"
+                id="list-profile-list"
+                href="admin_profile.html"
+                role="tab"
+                aria-controls="profile"
+                ><i class="fas fa-sign-out-alt"></i> Logout</a
+              >
+            </div>
+          </div>
+          <div class="col-9" id="#section-to-print">   
+            <div class="tab-content" id="nav-tabContent">
+              <div
+                class="tab-pane fade show active"
+                id="list-profile"
+                role="tabpanel"
+                aria-labelledby="list-profile-list"
+              >
+                <div class="card " >
+                  <div class="card-header text-center" >Quiz Results</div>
+
+                  <div class="card-body">
+                    <b> <h5  class="card-title"><%= quiz.name %></h5></b>
+                    <h6 class="card-subtitle mb-2 text-muted"><%= quiz.subject.name %></h6>
+                    <p class="card-text"><%= quiz.description%><br> 
+                    </p> <table class="table " >
+                       <tr>
+                         <td>
+                           Total Questions: <%= quiz.numberOfQuestions %>
+                         </td>
+                         <td>
+                           Max Marks: <%= quiz.maxMarks %>
+                         </td>
+                       </tr>
+                       </table>
+
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Name</th>
+                          <th scope="col">Date </th>
+                          <th scope="col">Questions Attempted</th>
+                          <th scope="col">Marks Obtained</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          <% results.forEach((result,index) => { %>
+                            <tr>
+                                <th scope="row"><%= `${index+1}` %></th>
+                                <td><%= result.user.firstName %> <%= result.user.lastName %></td>
+                                <td><%= result.createdAt.toLocaleString('en-IN',{ weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour : 'numeric',minute: 'numeric'}) %></td>
+                                <td>8</td>
+                                <td><%= result.marksScored %></td>
+                              </tr>
+                          <% }) %>
+                        
+                      </tbody>
+                    </table>
+                   <div style="text-align: center;" id="#printvisibility">
+                    <a onclick=" window.print();" style="color: white; margin-left: auto;margin-right: auto;" class="btn btn-primary">Print</a>
+                  </div>
+                  </div>
+                  <div class="card-footer text-center text-muted">Engage '21</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="../../js/bundle.js"></script>
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"
+  ></script>
+</html>

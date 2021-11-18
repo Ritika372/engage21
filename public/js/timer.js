@@ -1,5 +1,5 @@
 const FULL_DASH_ARRAY = 283;
-const WARNING_THRESHOLD = 30;
+const WARNING_THRESHOLD = 10;
 const ALERT_THRESHOLD = 5;
  const showAlert = (type, message) => {
     hideAlert();
