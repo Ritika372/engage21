@@ -175,6 +175,7 @@
                     <a href="#" id="switch" class="btn btn-primary">Update</a>
                   </div>
 
+                  <form id = "updateProfile-form">
                   <div class="card-body" id="updateForm" hidden>
                     
                     <table class="table table-hover">
@@ -219,7 +220,6 @@
                         <tr>
                           <td id="property">Phone</td>
                           <td id="value">
-                            
                               <input
                                 type="text"
                                 id="update-phone"
@@ -228,9 +228,7 @@
                                 autofocus
                                 required
                                 value=<%= user.phone %>
-                              />
-                            
-                              
+                              />  
                            </td>
                         </tr>
                         <tr>
@@ -239,9 +237,10 @@
                         </tr>
                       </tbody>
                     </table>
-                    <a href="#" class="btn btn-danger">Update</a>
+                    <button type = "submit" class="btn btn-danger">Update</button>
                     <a href="#" id="cancel" class="btn btn-primary">Cancel</a>
                   </div>
+                </form>
 
                   <div class="card-footer text-muted">Engage '21</div>
                 </div>
@@ -272,7 +271,7 @@
                                 quiz.maxMarks %>
                               </i>
                             </p>
-                            <button type="button" class="btn btn-info">
+                            <button name = "start-quiz" data-quizid = <%= quiz._id %> type="button" class="btn btn-info">
                               Start
                             </button>
                           </div>
@@ -315,7 +314,7 @@
                                 quiz.maxMarks %>
                               </i>
                             </p>
-                            <button type="button" class="btn btn-info">
+                            <button name = "start-quiz" data-quizid = <%= quiz._id %> type="button" class="btn btn-info">
                               Start
                             </button>
                           </div>
@@ -335,6 +334,7 @@
     </div>
   </body>
 
+  <script src = "../js/bundle.js"></script>
   <script>
     var ele=document.getElementById("switch");
     ele.onclick=showForm;

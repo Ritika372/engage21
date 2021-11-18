@@ -17,6 +17,7 @@ const quizSchema = new mongoose.Schema(
     numberOfQuestions: {
       type: Number,
       required: [true, "Please tell the number of questions in the quiz"],
+      min: [1, "Quiz must have 1 question atleast"],
     },
     active: {
       type: Boolean,
