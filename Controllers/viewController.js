@@ -56,6 +56,7 @@ exports.getQuestionsOfQuizById = async (req, res, next) => {
     res.status(200).render("questions", {
       questions,
       link: `/quizzes/${quizId}/addQuestion`,
+      user: req.user
     });
   } catch (err) {
     next(err);
@@ -64,7 +65,7 @@ exports.getQuestionsOfQuizById = async (req, res, next) => {
 
 exports.getAddQuestionPage = async (req, res, next) => {
   try {
-    res.status(200).render("addQues", { quizId: req.params.id });
+    res.status(200).render("addQues", { quizId: req.params.id,user: req.user });
   } catch (err) {
     next(err);
   }
@@ -110,7 +111,7 @@ exports.getQuizResultPage = async (req, res, next) => {
 exports.getProfilePage = async (req, res, next) => {
   try {
     if (req.user.role === "admin") {
-      res.status(200).render("profile");
+      res.status(200).render("profile",{user: req.user});
     }
 
     const subjects = await Subject.find();
@@ -142,7 +143,7 @@ exports.getAttemptsOfQuizById = async (req, res, next) => {
   try {
     const results = await Result.find({ quiz: req.params.id });
     const quiz = await Quiz.findById(req.params.id);
-    res.status(200).render("attempts", { results, quiz });
+    res.status(200).render("attempts", { results, quiz,user: req.user });
   } catch (err) {
     next(err);
   }
