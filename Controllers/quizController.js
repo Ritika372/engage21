@@ -2,6 +2,7 @@ const Quiz = require("../Model/quizModel");
 const customError = require("../utils/customError");
 const Question = require("../Model/questionModel");
 const Result = require("../Model/resultModel");
+const Email = require("../utils/email");
 
 //Get one Quiz by id
 exports.getOneQuiz = async (req, res, next) => {
@@ -106,8 +107,6 @@ exports.evaluateQuiz = async (req, res, next) => {
     const markedAnswers = req.body.markedAnswers;
     const userId = req.user._id;
 
-    
-
     const maxMarks = quiz.maxMarks;
     let marksScored = 0;
     let correctAnswers = 0;
@@ -116,17 +115,19 @@ exports.evaluateQuiz = async (req, res, next) => {
       const question = await Question.findById(questions[i]);
       console.log(markedAnswers[i], question.answer);
       if (markedAnswers[i] === question.answer) {
-        marksScored += Math.round(maxMarks / questions.length);
+        marksScored += Math.round(maxMarks / quiz.numberOfQuestions);
         correctAnswers++;
       }
     }
-
     const result = await Result.create({
       user: userId,
       quiz: quizId,
       marksScored,
       correctAnswers,
     });
+
+    const resultMail = await Result.findById(result._id);
+    await new Email(req.user, resultMail).send("resultMail");
 
     res.status(201).json({
       status: "success",

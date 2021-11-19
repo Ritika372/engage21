@@ -40,7 +40,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto"></ul>
         <span>
-          <a class="navbar-brand" href="#">Hi Ritika!</a>
+          <a class="navbar-brand" href="#"><%= user.firstName%> (Admin)</a>
           <a class="navbar-brand" href="#"
             >Logout <i class="fas fa-sign-out-alt"></i
           ></a>
@@ -260,8 +260,9 @@
                                 <select
                                   class="custom-select my-1 mr-sm-2"
                                   id="answer"
+                                  required
                                 >
-                                  <option selected>Choose Answer</option>
+                                  <option value="" disabled selected>Choose Answer</option>
                                   <option
                                     hidden
                                     id="option1"
@@ -280,7 +281,7 @@
                                   <option
                                     hidden
                                     id="option4"
-                                    value="3"
+                                    value="4"
                                   ></option>
                                 </select>
                                 <label class="floating-label"></label>

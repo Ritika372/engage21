@@ -8846,7 +8846,7 @@ var signup = /*#__PURE__*/function () {
             if (res.data.status === "success") {
               (0, _alert.showAlert)("success", "Registered successfully!");
               window.setTimeout(function () {
-                location.assign("/profile");
+                location.assign("/home");
               }, 1500);
             }
 
@@ -9534,6 +9534,7 @@ if (addQuesForm) {
 
 if (submitQuizForm) {
   submitQuizForm.addEventListener("submit", function (event) {
+    document.getElementById("submitButton").innerText = "Submitting ...";
     event.preventDefault();
     var numberOfQuestions = submitQuizForm.dataset.numberofquestions;
     var quizId = submitQuizForm.dataset.quizid;
@@ -9541,16 +9542,15 @@ if (submitQuizForm) {
     var markedAnswers = [];
 
     for (var i = 0; i < numberOfQuestions; i += 1) {
-      var queId = "questionId".concat(i);
-
-      if (document.getElementById(queId)) {
-        questions.push(document.getElementById(queId).dataset.queid);
-      }
+      var queId = "questionId".concat(i); // if (document.getElementById(queId)) {
+      //   questions.push(document.getElementById(queId).dataset.queid);
+      // }
 
       var markedAns = document.getElementsByName("option".concat(i));
 
       for (var _i = 0; _i < markedAns.length; _i++) {
         if (markedAns[_i].checked) {
+          questions.push(document.getElementById(queId).dataset.queid);
           markedAnswers.push(markedAns[_i].value);
           break;
         }

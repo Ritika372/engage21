@@ -90,6 +90,9 @@ if (addQuesForm) {
 
 if (submitQuizForm) {
   submitQuizForm.addEventListener("submit", (event) => {
+
+    document.getElementById("submitButton").innerText = "Submitting ...";
+
     event.preventDefault();
     const numberOfQuestions = submitQuizForm.dataset.numberofquestions;
     const quizId = submitQuizForm.dataset.quizid;
@@ -98,19 +101,20 @@ if (submitQuizForm) {
 
     for (let i = 0; i < numberOfQuestions; i += 1) {
       let queId = `questionId${i}`;
-      if (document.getElementById(queId)) {
-        questions.push(document.getElementById(queId).dataset.queid);
-      }
+      // if (document.getElementById(queId)) {
+      //   questions.push(document.getElementById(queId).dataset.queid);
+      // }
 
       let markedAns = document.getElementsByName(`option${i}`);
+
       for (let i = 0; i < markedAns.length; i++) {
         if (markedAns[i].checked) {
+          questions.push(document.getElementById(queId).dataset.queid);
           markedAnswers.push(markedAns[i].value);
           break;
         }
       }
     }
-
     evaluateQuiz(questions, markedAnswers, quizId);
   });
 }
