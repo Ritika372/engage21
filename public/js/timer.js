@@ -1,6 +1,14 @@
 const FULL_DASH_ARRAY = 283;
 const WARNING_THRESHOLD = 10;
 const ALERT_THRESHOLD = 5;
+document.addEventListener('contextmenu', event => event.preventDefault());
+function clearChecks(radioName) {
+  var radio = document.getElementsByName(radioName)
+  
+  for(x=0;x<radio.length;x++) {
+      radio[x].checked = false
+  }
+}
  const showAlert = (type, message) => {
     hideAlert();
     const markup = `<div class = 'alert alert--${type}'>${message}</div>`;
@@ -14,6 +22,9 @@ const ALERT_THRESHOLD = 5;
       ele.parentElement.removeChild(ele);
     }
   };
+  window.onbeforeunload = function () {
+    return 'Are you sure? Your work will be lost. ';
+};
 const COLOR_CODES = {
   info: {
     color: "green"
@@ -28,7 +39,7 @@ const COLOR_CODES = {
   }
 };
 
-const TIME_LIMIT = 40;
+const TIME_LIMIT = 400;
 let timePassed = 0;
 let timeLeft = TIME_LIMIT;
 let timerInterval = null;

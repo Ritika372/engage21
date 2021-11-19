@@ -26,9 +26,12 @@
           <div class="col-md-2"><br>
             <div class="card text-center">
               <div class="card-header"> <b>Important Notice</b></div>
-              <div class="card-body">
+              <div class="card-body" id="notice">
+              <ul id="noticelist" >
+                <li>We are monitoring all the activity on this browser. Please try to give the quiz honestly.</li>
+                <li> <b>Don't Refresh</b> as your questions would be changed</li>
+              </ul>
               
-              <p>We are monitoring all the activity on this browser. Please try to give the quiz honestly.</p>
             </div>
           </div>
           </div>
@@ -54,16 +57,22 @@
                                 <label>
                                   <input
                                     type="radio"
+                                   
                                     name= <%= `option${index}` %>
                                     value= "<%= option %>"
                                     
                                   />
                                   <%= option %>
                                 </label>
+                               
                               </div>
+                              
                               <% }) %>
+                              <a class="btn btn-info" href="javascript:clearChecks('<%= `option${index}` %>')">clear</a>
                             </div>
+                           
                           </div>
+                          
                         </td>
                       </tr>
                       <% }) %>

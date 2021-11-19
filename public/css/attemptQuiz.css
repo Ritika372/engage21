@@ -177,3 +177,13 @@ table {
   justify-content: center;
   font-size: 210%;
 }
+
+#notice {
+  padding: 0%;
+}
+#noticelist {
+  text-align: left;
+  padding: 0;
+  padding-left: 10%;
+  padding-right: 10%;
+}
