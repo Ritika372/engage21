@@ -27,19 +27,19 @@ const handleExpiredJWTError = () => {
 };
 
 const sendErrorDev = (err, req, res) => {
-  //if (req.originalUrl.startsWith("/api")) {
+  if (req.originalUrl.startsWith("/api")) {
   res.status(err.statusCode).json({
     status: err.status,
     message: err.message,
     stack: err.stack,
     err,
   });
-  //   } else {
-  //     res.status(err.statusCode).render("error", {
-  //       title: "Something went wrong!",
-  //       msg: err.message,
-  //     });
-  //   }
+    } else {
+      res.status(err.statusCode).render("error", {
+        title: "Something went wrong!",
+        msg: err.message,
+      });
+    }
 };
 
 const sendErrorProd = (err, req, res) => {
