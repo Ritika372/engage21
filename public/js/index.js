@@ -90,6 +90,9 @@ if (addQuesForm) {
 
 if (submitQuizForm) {
   submitQuizForm.addEventListener("submit", (event) => {
+
+    document.getElementById("submitButton").innerText = "Submitting ...";
+
     event.preventDefault();
     const numberOfQuestions = submitQuizForm.dataset.numberofquestions;
     const quizId = submitQuizForm.dataset.quizid;

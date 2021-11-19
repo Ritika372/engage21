@@ -33,7 +33,7 @@ export const signup = async (data) => {
     if (res.data.status === "success") {
       showAlert("success", "Registered successfully!");
       window.setTimeout(() => {
-        location.assign("/profile");
+        location.assign("/home");
       }, 1500);
     }
   } catch (err) {

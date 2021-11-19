@@ -8846,7 +8846,7 @@ var signup = /*#__PURE__*/function () {
             if (res.data.status === "success") {
               (0, _alert.showAlert)("success", "Registered successfully!");
               window.setTimeout(function () {
-                location.assign("/profile");
+                location.assign("/home");
               }, 1500);
             }
 
@@ -9534,6 +9534,7 @@ if (addQuesForm) {
 
 if (submitQuizForm) {
   submitQuizForm.addEventListener("submit", function (event) {
+    document.getElementById("submitButton").innerText = "Submitting ...";
     event.preventDefault();
     var numberOfQuestions = submitQuizForm.dataset.numberofquestions;
     var quizId = submitQuizForm.dataset.quizid;
