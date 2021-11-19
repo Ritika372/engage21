@@ -23,8 +23,9 @@ function clearChecks(radioName) {
     }
   };
   window.onload = function() {
-   console.log(window.btn_clicked);
+  
 
+    
   document.getElementById("submitButton").onclick = setGlobal;
   function setGlobal() {
     window.btn_clicked = true;
@@ -32,7 +33,7 @@ function clearChecks(radioName) {
 }
   window.onbeforeunload = function () {
     if (!window.btn_clicked) {
-    return 'Are you sure? Your work will be lost. ';
+    return "Are you sure? Your work will be lost.";
     }
 };
   };
