@@ -22,9 +22,20 @@ function clearChecks(radioName) {
       ele.parentElement.removeChild(ele);
     }
   };
+  window.onload = function() {
+   console.log(window.btn_clicked);
+
+  document.getElementById("submitButton").onclick = setGlobal;
+  function setGlobal() {
+    window.btn_clicked = true;
+    
+}
   window.onbeforeunload = function () {
+    if (!window.btn_clicked) {
     return 'Are you sure? Your work will be lost. ';
+    }
 };
+  };
 const COLOR_CODES = {
   info: {
     color: "green"
@@ -49,7 +60,7 @@ document.getElementById("app").innerHTML = `
 <div class="base-timer">
   <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
     <g class="base-timer__circle">
-      <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
+      <circle class="base-timer__path-elapsed" cx="50%" cy="50%" r="45%"></circle>
       <path
         id="base-timer-path-remaining"
         stroke-dasharray="283"

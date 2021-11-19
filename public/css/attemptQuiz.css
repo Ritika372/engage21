@@ -167,15 +167,16 @@ table {
 }
 
 .base-timer__label {
-  position: absolute;
+  position: relative;
   width: 80%;
   height: 80%;
-  top: 15px;
+  margin-top: -75%;
+  margin-bottom: 50%;
   left: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 210%;
+  font-size: 3.2vw;
 }
 
 #notice {

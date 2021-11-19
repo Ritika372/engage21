@@ -21,6 +21,7 @@ export const addQuiz = async (data) => {
 
 export const evaluateQuiz = async (questions, markedAnswers, quizId) => {
   try {
+    window.onbeforeunload = null;
     const res = await axios({
       method: "POST",
       url: `http://localhost:3000/api/quiz/${quizId}`,
@@ -28,6 +29,7 @@ export const evaluateQuiz = async (questions, markedAnswers, quizId) => {
     });
     if (res.data.status === "success") {
       showAlert("success", "Quiz submitted successfully!");
+      window.onbeforeunload = null;
       window.setTimeout(() => {
         location.assign(`/quizzes/${quizId}/result`);
       }, 1500);

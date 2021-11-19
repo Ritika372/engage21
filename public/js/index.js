@@ -90,7 +90,7 @@ if (addQuesForm) {
 
 if (submitQuizForm) {
   submitQuizForm.addEventListener("submit", (event) => {
-
+    window.onbeforeunload = null;
     document.getElementById("submitButton").innerText = "Submitting ...";
 
     event.preventDefault();
@@ -115,6 +115,7 @@ if (submitQuizForm) {
         }
       }
     }
+    window.onbeforeunload = null;
     evaluateQuiz(questions, markedAnswers, quizId);
   });
 }
