@@ -34,6 +34,10 @@ const quizSchema = new mongoose.Schema(
       ref: "Subject",
       required: [true, "Quiz must belong to a subject"],
     },
+    negativeMarking: {
+      type: Number,
+      default: 0,
+    },
   },
   {
     toJson: { virtuals: true },

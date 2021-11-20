@@ -118,6 +118,9 @@ exports.evaluateQuiz = async (req, res, next) => {
         marksScored += Math.round(maxMarks / quiz.numberOfQuestions);
         correctAnswers++;
       }
+      else{
+        marksScored -= quiz.negativeMarking;
+      }
     }
     const result = await Result.create({
       user: userId,

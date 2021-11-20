@@ -66,6 +66,7 @@ if (addQuizForm) {
     ).value;
     data.subject = document.getElementById("addQuiz-subject").value;
     data.active = document.getElementById("addQuiz-active").checked;
+    data.negativeMarking = document.getElementById("addQuiz-negMarking");
 
     addQuiz(data);
   });
