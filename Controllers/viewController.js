@@ -56,7 +56,7 @@ exports.getQuestionsOfQuizById = async (req, res, next) => {
     res.status(200).render("questions", {
       questions,
       link: `/quizzes/${quizId}/addQuestion`,
-      user: req.user
+      user: req.user,
     });
   } catch (err) {
     next(err);
@@ -65,7 +65,9 @@ exports.getQuestionsOfQuizById = async (req, res, next) => {
 
 exports.getAddQuestionPage = async (req, res, next) => {
   try {
-    res.status(200).render("addQues", { quizId: req.params.id,user: req.user });
+    res
+      .status(200)
+      .render("addQues", { quizId: req.params.id, user: req.user });
   } catch (err) {
     next(err);
   }
@@ -111,7 +113,7 @@ exports.getQuizResultPage = async (req, res, next) => {
 exports.getProfilePage = async (req, res, next) => {
   try {
     if (req.user.role === "admin") {
-      res.status(200).render("profile",{user: req.user});
+      res.status(200).render("profile", { user: req.user });
     }
 
     const subjects = await Subject.find();
@@ -143,7 +145,7 @@ exports.getAttemptsOfQuizById = async (req, res, next) => {
   try {
     const results = await Result.find({ quiz: req.params.id });
     const quiz = await Quiz.findById(req.params.id);
-    res.status(200).render("attempts", { results, quiz,user: req.user });
+    res.status(200).render("attempts", { results, quiz, user: req.user });
   } catch (err) {
     next(err);
   }
@@ -156,6 +158,28 @@ exports.logout = async (req, res, next) => {
       httpOnly: true,
     });
     res.status(200).render("login");
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getAdminDashboard = async (req, res, next) => {
+  try {
+    let agg = Result.aggregate([
+      { $group: { _id: "$quiz", avgMarks: { $avg: "$percentage" } } },
+    ]);
+
+    let results = [];
+
+    for await (const doc of agg) {
+      const quiz = await Quiz.findById(doc._id);
+      results.push({
+        quiz,
+        avgPerc: doc.avgMarks,
+      });
+    }
+    console.log(results);
+    res.status(200).render("adminDashboard", {results});
   } catch (err) {
     next(err);
   }

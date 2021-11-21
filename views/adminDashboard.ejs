@@ -1,0 +1,179 @@
+<html>
+
+    <head>
+        <meta charset="utf-8" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <title>Dashboard</title>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
+        <link rel="icon" href="../assets/book-fill.png">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous" />
+        <link rel="stylesheet" href="../css/quiz.css">
+        <script src="https://kit.fontawesome.com/d46d25282a.js" crossorigin="anonymous"></script>
+        <style>
+            .chartBox{
+                height: 400px;
+                width: 400px;
+                margin-left: 20%;
+            }
+        </style>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-dark  navbar-expand-lg">
+            <a class="navbar-brand" href="#"><i class="fas fa-book"></i> Exam Portal</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                </ul>
+                <span>
+
+                    <a class="navbar-brand" href="#">
+                        <%= user.firstName%> (Admin)
+                    </a>
+                    <a class="navbar-brand" href="/logout">Logout <i class="fas fa-sign-out-alt"></i></a>
+                </span>
+            </div>
+        </nav>
+        <div class="bootstrap-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="list-group" id="list-tab" role="tablist">
+                            <a class="list-group-item list-group-item-action " id="list-profile-list" href="/dashboard"
+                                role="tab" aria-controls="profile"><i class="fas fa-home"></i> Dashboard</a>
+                            <a class="list-group-item list-group-item-action " id="list-profile-list" href="/home"
+                                role="tab" aria-controls="profile"><i class="fas fa-id-card"></i> Profile</a>
+                            <a class="list-group-item list-group-item-action" id="list-messages-list" href="/subjects"
+                                role="tab" aria-controls="messages"><i class="fas fa-list"></i> Subjects</a>
+                            <a class="list-group-item list-group-item-action" id="list-profile-list " href="/addSubject"
+                                role="tab" aria-controls="profile"><i class="fas fa-plus-circle"></i> Add Subject</a>
+                            <a class="list-group-item list-group-item-action active" id="list-profile-list"
+                                href="#list-profile" data-toggle="list" role="tab" aria-controls="profile"><i
+                                    class="fas fa-question-circle"></i> Quizzes</a>
+                            <a class="list-group-item list-group-item-action" id="list-profile-list" href="/addQuiz"
+                                role="tab" aria-controls="profile"><i class="fas fa-plus"></i> Add Quiz</a>
+                            <a class="list-group-item list-group-item-action" id="list-profile-list" href="/logout"
+                                role="tab" aria-controls="profile"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                    <div class="col-9">
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade  show active" id="list-profile" role="tabpanel"
+                                aria-labelledby="list-profile-list">
+                                <div class="card text-center">
+
+                                    <div class="tab-pane fade show active" id="list-profile" role="tabpanel"
+                                        aria-labelledby="list-profile-list">
+                                        <div class="card text-center">
+                                            <div class="card-header">
+                                                <h4>Quiz Statistics</h4>
+                                            </div>
+
+                                            <div class="card-body">
+
+                                                <span id='variableJSON' hidden>
+                                                    <%= JSON.stringify(results); %>
+                                                </span>
+                                                <div class = "chartBox">
+                                                <canvas width="400" height="400" id="perfChart"></canvas></div>
+
+                                            </div>
+                                            <div class="card-footer text-muted">Engage '21</div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+
+    <script src="../js/bundle.js"></script>
+    <script>
+        let labels = [];
+        let data = [];
+
+        var results = JSON.parse(document.getElementById("variableJSON").innerHTML);
+        document.getElementById("variableJSON").remove();
+
+        results.forEach((result) => {
+            labels.push(`${result.quiz.name} `);
+            data.push(result.avgPerc);
+        });
+
+
+        let perfChart = document.getElementById("perfChart").getContext('2d');
+        let studentPerfChart = new Chart(perfChart, {
+            type: 'pie',
+            data: {
+                labels,
+                datasets: [{
+                    label: 'Student',
+                    data,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Average percentage per Quiz'
+                    },
+                    datalabels: {
+                        borderWidth: 5,
+                        borderColor: "white",
+                        borderRadius: 8,
+                        // color: 0,
+                        font: {
+                            weight: "bold"
+                        },
+                        backgroundColor: "lightgray"
+                    }
+                }
+            },
+        });
+
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+
+</html>

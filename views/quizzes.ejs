@@ -38,15 +38,15 @@
         <div class="row">
           <div class="col-3">
             <div class="list-group" id="list-tab" role="tablist">
-
-
+              <a class="list-group-item list-group-item-action " id="list-profile-list" href="/dashboard" role="tab"
+                aria-controls="profile"><i class="fas fa-home"></i> Dashboard</a>
               <a class="list-group-item list-group-item-action " id="list-profile-list" href="/home" role="tab"
                 aria-controls="profile"><i class="fas fa-id-card"></i> Profile</a>
               <a class="list-group-item list-group-item-action" id="list-messages-list" href="/subjects" role="tab"
                 aria-controls="messages"><i class="fas fa-list"></i> Subjects</a>
               <a class="list-group-item list-group-item-action" id="list-profile-list " href="/addSubject" role="tab"
                 aria-controls="profile"><i class="fas fa-plus-circle"></i> Add Subject</a>
-              <a class="list-group-item list-group-item-action active" id="list-profile-list" href="#list-profile"
+              <a class="list-group-item list-group-item-action active" id="list-profile-list" href="/quizzes"
                 data-toggle="list" role="tab" aria-controls="profile"><i class="fas fa-question-circle"></i> Quizzes</a>
               <a class="list-group-item list-group-item-action" id="list-profile-list" href="/addQuiz" role="tab"
                 aria-controls="profile"><i class="fas fa-plus"></i> Add Quiz</a>
@@ -56,10 +56,7 @@
           </div>
           <div class="col-9">
             <div class="tab-content" id="nav-tabContent">
-              <div class="tab-pane fade" id="list-home" role="tabpanel" aria-labelledby="list-home-list"> Lorem ipsum
-                dolor sit, amet consectetur adipisicing elit. Qui, unde facere. Cumque impedit ab voluptates corporis
-                expedita, tempore temporibus reprehenderit neque assumenda veritatis ullam repellendus natus excepturi
-                mollitia deserunt dolorum!</div>
+
               <div class="tab-pane fade  show active" id="list-profile" role="tabpanel"
                 aria-labelledby="list-profile-list">
                 <div class="card text-center">
@@ -93,7 +90,7 @@
                                   <button type="button" class="btn btn-light">Max Marks: <%= quiz.maxMarks %></button>
                                   <button type="button" class="btn btn-light">Questions: <%= quiz.numberOfQuestions %>
                                   </button>
-                                  <button type="button" class="btn btn-danger">Update </button>
+
                                   <button data-quizid=<%=quiz._id %> name = "show-attempts" type="button" class="btn
                                     btn-info">Attempts</button><br><br>
 
@@ -102,8 +99,8 @@
                                     <div class="col-sm-1">
                                       <label style="margin-top: 2px" class="switch">
                                         <input data-quizid=<%=quiz._id %> name="markQuiz-active" type="checkbox"
-                                        <%= quiz.active ? "checked" : ""%> />
-                                        <span class="slider round"> </span>
+                                        <%= quiz.active ? "checked" : "" %> />
+                                          <span class="slider round"> </span>
                                       </label>
                                     </div>
                                     <div class="col-md-3" style="text-align: start; margin-left: -2%">
