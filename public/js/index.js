@@ -2,9 +2,9 @@ import "@babel/polyfill";
 
 import { login, signup } from "./login";
 import { addSubject } from "./subject";
-import { addQuiz, evaluateQuiz } from "./quiz";
+import { addQuiz, evaluateQuiz, updateQuiz } from "./quiz";
 import { addQuestion } from "./question";
-import {updateProfile} from "./user";
+import { updateProfile } from "./user";
 
 const loginForm = document.getElementById("login-form");
 const signupForm = document.getElementById("signup-form");
@@ -17,6 +17,8 @@ const updateProfileForm = document.getElementById("updateProfile-form");
 const questionsButton = document.getElementsByName("open-questions");
 const startQuizButtons = document.getElementsByName("start-quiz");
 const showAttemptsButtons = document.getElementsByName("show-attempts");
+
+const markQuizActive = document.getElementsByName("markQuiz-active");
 
 if (loginForm) {
   loginForm.addEventListener("submit", (event) => {
@@ -66,9 +68,10 @@ if (addQuizForm) {
     ).value;
     data.subject = document.getElementById("addQuiz-subject").value;
     data.active = document.getElementById("addQuiz-active").checked;
-    data.negativeMarking = parseInt(document.getElementById("addQuiz-negMarking").value);
-    data.timer = parseInt(document.getElementById("addQuiz-timer").value)*60;
-
+    data.negativeMarking = parseFloat(
+      document.getElementById("addQuiz-negMarking").value
+    );
+    data.timer = parseFloat(document.getElementById("addQuiz-timer").value) * 60;
     addQuiz(data);
   });
 }
@@ -103,7 +106,7 @@ if (submitQuizForm) {
 
     for (let i = 0; i < numberOfQuestions; i += 1) {
       let queId = `questionId${i}`;
-    
+
       let markedAns = document.getElementsByName(`option${i}`);
 
       for (let i = 0; i < markedAns.length; i++) {
@@ -156,6 +159,16 @@ if (showAttemptsButtons) {
     btn.addEventListener("click", (event) => {
       const quizId = btn.dataset.quizid;
       location.assign(`/quizzes/${quizId}/attempts`);
+    });
+  });
+}
+
+if (markQuizActive) {
+  markQuizActive.forEach((input) => {
+    input.addEventListener("change", (event) => {
+      const quizid = input.dataset.quizid;
+      const active = input.checked;
+      updateQuiz(quizid, active);
     });
   });
 }

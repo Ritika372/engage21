@@ -38,3 +38,23 @@ export const evaluateQuiz = async (questions, markedAnswers, quizId) => {
     showAlert("error", err.response.data.message);
   }
 };
+
+export const updateQuiz = async(quizid,active) => {
+  try{
+    const res = await axios({
+      method: "PATCH",
+      url: `http://localhost:3000/api/quiz/${quizid}`,
+      data : {active},
+    });
+    if (res.data.status === "success") {
+      const message = `${active ? "Quiz is active now." : "Quiz is disabled for students"}`;
+      showAlert("success", message);
+      window.setTimeout(() => {
+        location.assign(`/quizzes`);
+      }, 1500);
+    }
+
+  } catch(err){
+    showAlert("error", err.response.data.message);
+  }
+}
