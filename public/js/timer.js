@@ -51,7 +51,7 @@ const COLOR_CODES = {
   }
 };
 
-const TIME_LIMIT = 400;
+const TIME_LIMIT = document.getElementById(submitQuiz-form).dataset.timer;
 let timePassed = 0;
 let timeLeft = TIME_LIMIT;
 let timerInterval = null;

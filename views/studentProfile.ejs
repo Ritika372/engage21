@@ -8,6 +8,7 @@
     />
     <title>Profile</title>
     <link rel="icon" href="../assets/book-fill.png" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -41,7 +42,7 @@
         <ul class="navbar-nav mr-auto"></ul>
         <span>
           <a class="navbar-brand" href="#">Hi <%= user.firstName %>!</a>
-          <a class="navbar-brand" href="#"
+          <a class="navbar-brand" href="/logout"
             >Logout <i class="fas fa-sign-out-alt"></i
           ></a>
         </span>
@@ -70,7 +71,7 @@
                 aria-controls="profile"
                 ><i class="fas fa-id-card"></i> Profile</a
               ><br />
-              <h5>Categories</h5>
+              <h5>Action</h5>
               <a
                 class="list-group-item list-group-item-action active"
                 id="list-messages-list"
@@ -103,6 +104,9 @@
                   <div class="card-header text-center">
                     <h4>Attempted Quizzes</h4>
                     </div>
+                    <div class = "container">
+                      <canvas id = "perfChart"></canvas>
+                    </div>
                     <div class="card-body">
                       <% quizAttemptedByUser.forEach((quiz) => { %>
                         <div class="col-sm-12">
@@ -123,7 +127,7 @@
                                   <tr>
                                     <!-- Correction in quiz Model -->
                                     <td>
-                                      Questions Attempted: 5
+                                      Questions Attempted: <%= quiz.attempted %>
                                     </td>
                                     <td>
                                       Correct Answers: <%= quiz.correctAnswers %>
@@ -335,6 +339,21 @@
   </body>
 
   <script src = "../js/bundle.js"></script>
+  <script>
+    let perfChart = document.getElementById("perfChart").getContext('2d');
+    let studentPerfChart = new Chart(perfChart,{
+      type : 'line',
+      data : {
+        label : ["dat1"],
+        datasets: [{
+          label :"dat1",
+          data: [12,10,20]
+        }]
+      },
+      options: {}
+    })
+
+  </script>
   <script>
     var ele=document.getElementById("switch");
     ele.onclick=showForm;

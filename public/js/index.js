@@ -66,7 +66,8 @@ if (addQuizForm) {
     ).value;
     data.subject = document.getElementById("addQuiz-subject").value;
     data.active = document.getElementById("addQuiz-active").checked;
-    data.negativeMarking = document.getElementById("addQuiz-negMarking");
+    data.negativeMarking = parseInt(document.getElementById("addQuiz-negMarking").value);
+    data.timer = parseInt(document.getElementById("addQuiz-timer").value)*60;
 
     addQuiz(data);
   });
@@ -102,10 +103,7 @@ if (submitQuizForm) {
 
     for (let i = 0; i < numberOfQuestions; i += 1) {
       let queId = `questionId${i}`;
-      // if (document.getElementById(queId)) {
-      //   questions.push(document.getElementById(queId).dataset.queid);
-      // }
-
+    
       let markedAns = document.getElementsByName(`option${i}`);
 
       for (let i = 0; i < markedAns.length; i++) {

@@ -24,6 +24,14 @@ const resultSchema = new mongoose.Schema(
       type: Number,
       required: [true, "Result must have number of correct answers."],
     },
+    attempted: {
+      type: Number,
+      required: [true, "Result must have number of attempted questions"],
+    },
+    percentage: {
+      type: Number,
+      required: [true, "Result must have a percentage value"],
+    },
   },
   {
     toJson: { virtuals: true },

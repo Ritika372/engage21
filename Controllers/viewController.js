@@ -148,3 +148,15 @@ exports.getAttemptsOfQuizById = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.logout = async (req, res, next) => {
+  try {
+    res.cookie("jwt", "loggedOut", {
+      expires: new Date(Date.now() + 10 * 1000),
+      httpOnly: true,
+    });
+    res.status(200).render("login");
+  } catch (err) {
+    next(err);
+  }
+};

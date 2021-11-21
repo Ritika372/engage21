@@ -117,16 +117,20 @@ exports.evaluateQuiz = async (req, res, next) => {
       if (markedAnswers[i] === question.answer) {
         marksScored += Math.round(maxMarks / quiz.numberOfQuestions);
         correctAnswers++;
-      }
-      else{
+      } else {
         marksScored -= quiz.negativeMarking;
       }
     }
+
+    let percentage = ((marksScored / maxMarks) * 100).toFixed(2);
+
     const result = await Result.create({
       user: userId,
       quiz: quizId,
       marksScored,
       correctAnswers,
+      attempted: questions.length,
+      percentage,
     });
 
     const resultMail = await Result.findById(result._id);

@@ -11,6 +11,7 @@ router.use(authController.protect);
 router.get("/quizzes/:id/attemptQuiz", viewController.getRandomQuestionsOfQuizById);
 router.get("/quizzes/:id/result", viewController.getQuizResultPage);
 router.get("/home", viewController.getProfilePage);
+router.get("/logout", viewController.logout);
 
 router.use(authController.restrictTo("admin"));
 

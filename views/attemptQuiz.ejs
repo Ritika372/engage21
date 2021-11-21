@@ -38,7 +38,7 @@
 
           <div class="col-md-8">
             <br />
-            <form id = "submitQuiz-form" data-numberofquestions =<%= quiz.numberOfQuestions %> data-quizid = <%= quiz._id %> >
+            <form id = "submitQuiz-form" data-numberofquestions =<%= quiz.numberOfQuestions %> data-quizid = <%= quiz._id %> data-timer= <%= quiz.timer %> >
             <div class="card text-center">
               <div class="card-header"> <b><%= quiz.name %> </b></div>
               <div class="card-body">
@@ -104,8 +104,6 @@
   <script src="../../js/bundle.js"></script>
   <script src="../../js/timer.js">
     // Credit: Mateusz Rybczonec
-    
-
   </script>
  
   <script

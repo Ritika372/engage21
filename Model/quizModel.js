@@ -38,6 +38,10 @@ const quizSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    timer: {
+      type: Number,
+      required: [true, "Quiz must have a timer"],
+    },
   },
   {
     toJson: { virtuals: true },
