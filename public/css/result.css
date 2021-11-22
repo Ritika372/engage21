@@ -73,6 +73,7 @@ img {
 
 #property {
   text-align: right;
+  font-weight: bold;
 }
 #value {
   text-align: left;

@@ -143,8 +143,11 @@ exports.getProfilePage = async (req, res, next) => {
 
 exports.getAttemptsOfQuizById = async (req, res, next) => {
   try {
-    const results = await Result.find({ quiz: req.params.id });
+    var results = await Result.find({ quiz: req.params.id });
     const quiz = await Quiz.findById(req.params.id);
+    results.sort((res1, res2) => {
+      return res2.percentage - res1.percentage;
+    });
     res.status(200).render("attempts", { results, quiz, user: req.user });
   } catch (err) {
     next(err);
@@ -178,8 +181,8 @@ exports.getAdminDashboard = async (req, res, next) => {
         avgPerc: doc.avgMarks,
       });
     }
-    console.log(results);
-    res.status(200).render("adminDashboard", {results});
+    
+    res.status(200).render("adminDashboard", { results });
   } catch (err) {
     next(err);
   }

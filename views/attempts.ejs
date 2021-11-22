@@ -153,7 +153,8 @@
     var results = JSON.parse(document.getElementById("variableJSON").innerHTML);
     document.getElementById("variableJSON").remove();
 
-    results.forEach((result) => {
+    resultsSliced = results.slice(0,3);
+    resultsSliced.forEach((result) => {
       labels.push(`${result.user.firstName} ${result.user.lastName} `);
       data.push(result.percentage);
     });
@@ -196,7 +197,7 @@
         plugins: {
           title: {
             display: true,
-            text: 'Performance (%) of all students.'
+            text: 'Performance (%) of top 3 students.'
           }
         },
       }
