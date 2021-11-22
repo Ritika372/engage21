@@ -26,11 +26,14 @@ a {
   text-decoration: underline;
 }
 
-#input {
+input[id^="option"] {
   border: 0ch;
   border-bottom: 1px solid #999;
 }
-
+textarea[id^="question"] {
+  border: 0ch;
+  border-bottom: 1px solid #999;
+}
 .floating-label-group {
   position: relative;
 }
