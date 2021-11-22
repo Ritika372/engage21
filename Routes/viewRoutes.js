@@ -3,12 +3,16 @@ const viewController = require("../Controllers/viewController");
 const authController = require("../Controllers/authController");
 const router = express.Router();
 
+router.get("/", viewController.getLoginForm);
 router.get("/login", viewController.getLoginForm);
 router.get("/signup", viewController.getSignUpForm);
 
 router.use(authController.protect);
 
-router.get("/quizzes/:id/attemptQuiz", viewController.getRandomQuestionsOfQuizById);
+router.get(
+  "/quizzes/:id/attemptQuiz",
+  viewController.getRandomQuestionsOfQuizById
+);
 router.get("/quizzes/:id/result", viewController.getQuizResultPage);
 router.get("/home", viewController.getProfilePage);
 router.get("/logout", viewController.logout);
