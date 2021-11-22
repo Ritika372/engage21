@@ -26,6 +26,7 @@ router.get("/addSubject", viewController.getAddSubjectPage);
 router.get("/quizzes", viewController.getQuizPage);
 router.get("/dashboard", viewController.getAdminDashboard);
 router.get("/addQuiz", viewController.getAddQuizPage);
+router.get("/addNotes", viewController.getAddNotesPage);
 router.get("/quizzes/:id/questions", viewController.getQuestionsOfQuizById);
 router.get("/quizzes/:id/addQuestion", viewController.getAddQuestionPage);
 router.get("/quizzes/:id/attempts", viewController.getAttemptsOfQuizById);
