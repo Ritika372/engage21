@@ -250,11 +250,11 @@
                 </div>
               </div>
               <div class="tab-pane fade" id="list-filtered" role="tabpanel" aria-labelledby="list-settings-list">
-                <% activeQuizzes.forEach((quiz)=> { %>
-                <div class="card text-center" name="quiz" id="<%= quiz.subject.name %>">
-                  <div class="card-header"><%= quiz.subject.name %> Quizzes</div>
-
-                  <div class="card-body">
+                
+                <div class="card text-center">
+                  <div class="card-header">Quizzes</div>
+                  <% activeQuizzes.forEach((quiz)=> { %>
+                  <div class="card-body" name="quiz" id="<%= quiz.subject.name %>">
                     <div class="card-group">
                    
                         <div class="col-6" >
@@ -286,13 +286,13 @@
                             </div>
                           </div>
                         </div>
-
-                       
                     </div>
                   </div>
+                    <% }) %>
+                  
                   <div class="card-footer text-muted">Engage '21</div>
                 </div>
-                <% }) %>
+                
               </div>
             </div>
           </div>
