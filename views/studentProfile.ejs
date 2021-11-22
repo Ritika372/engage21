@@ -37,7 +37,11 @@
               <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="#list-home"
                 role="tab" aria-controls="home"><i class="fas fa-home"></i> Dashboard</a>
               <a class="list-group-item list-group-item-action " id="list-profile-list" data-toggle="list"
-                href="#list-profile" role="tab" aria-controls="profile"><i class="fas fa-id-card"></i> Profile</a><br />
+                href="#list-profile" role="tab" aria-controls="profile"><i class="fas fa-id-card"></i> Profile</a>
+                <a class="list-group-item list-group-item-action " id="list-profile-list" 
+                href="/study" role="tab" aria-controls="profile"><i class="fas fa-book-open"></i> Study Material</a>
+  
+                <br />
               <h5>Quizzes</h5>
               <a class="list-group-item list-group-item-action active" id="list-messages-list" data-toggle="list"
                 href="#list-all" role="tab" aria-controls="messages"><i class="fas fa-list"></i> All Subjects</a>
@@ -246,13 +250,14 @@
                 </div>
               </div>
               <div class="tab-pane fade" id="list-filtered" role="tabpanel" aria-labelledby="list-settings-list">
-                <div class="card text-center">
-                  <div class="card-header">All Quizzes</div>
+                <% activeQuizzes.forEach((quiz)=> { %>
+                <div class="card text-center" name="quiz" id="<%= quiz.subject.name %>">
+                  <div class="card-header"><%= quiz.subject.name %> Quizzes</div>
 
                   <div class="card-body">
                     <div class="card-group">
-                      <% activeQuizzes.forEach((quiz)=> { %>
-                        <div class="col-6" name="quiz" id="<%= quiz.subject.name %>">
+                   
+                        <div class="col-6" >
                           <div class="card">
                             <div class="card-body">
                               <h5 class="card-title">
@@ -282,11 +287,12 @@
                           </div>
                         </div>
 
-                        <% }) %>
+                       
                     </div>
                   </div>
                   <div class="card-footer text-muted">Engage '21</div>
                 </div>
+                <% }) %>
               </div>
             </div>
           </div>
