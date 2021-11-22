@@ -44,10 +44,46 @@ exports.getAddQuizPage = async (req, res, next) => {
   }
 };
 
+
+exports.getAddNotesPage = async (req, res, next) => {
+  try {
+    const subjects = await Subject.find();
+    res.status(200).render("addNotes", { subjects, user: req.user });
+  } catch (err) {
+    next(err);
+  }
+};
 exports.getUpdateProfilePage = async (req, res, next) => {
   res.status(200).render("updateProfile", { user: req.user });
 };
 
+exports.getStudyPage = async (req, res, next) => {
+  try{
+  const subjects = await Subject.find();
+  const quizAttemptedByUser = await Result.find({ user: req.user._id });
+
+  let quizAttemptedByUserArrayOfIds = [];
+
+  quizAttemptedByUser.forEach((quiz) => {
+    quizAttemptedByUserArrayOfIds.push(quiz.quiz);
+  });
+
+  const activeQuizzes = await Quiz.find({
+    active: true,
+    "questions.0": { $exists: true },
+    _id: { $nin: quizAttemptedByUserArrayOfIds },
+  });
+  res.status(200).render("study", {
+    user: req.user,
+    subjects,
+    activeQuizzes,
+    quizAttemptedByUser,
+  });
+}
+ catch (err) {
+  next(err);
+}
+};
 exports.getQuestionsOfQuizById = async (req, res, next) => {
   try {
     const quizId = req.params.id;
