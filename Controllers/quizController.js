@@ -113,7 +113,7 @@ exports.evaluateQuiz = async (req, res, next) => {
 
     for (let i = 0; i < questions.length; i += 1) {
       const question = await Question.findById(questions[i]);
-     
+
       if (markedAnswers[i] === question.answer) {
         marksScored += Math.round(maxMarks / quiz.numberOfQuestions);
         correctAnswers++;
@@ -131,6 +131,7 @@ exports.evaluateQuiz = async (req, res, next) => {
       correctAnswers,
       attempted: questions.length,
       percentage,
+      createdAt: Date.now(),
     });
 
     const resultMail = await Result.findById(result._id);
