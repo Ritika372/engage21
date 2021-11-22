@@ -213,7 +213,7 @@ exports.getAdminDashboard = async (req, res, next) => {
       const quiz = await Quiz.findById(doc._id);
       results.push({
         quiz,
-        avgPerc: doc.avgMarks,
+        avgPerc: doc.avgMarks.toFixed(2),
       });
     }
     
