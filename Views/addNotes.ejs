@@ -2,12 +2,13 @@
 
   <head>
     <meta charset="utf-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Questions</title>
-    <link rel="icon" href="../../assets/book-fill.png" />
+    <title>Add Notes</title>
+    <link rel="icon" href="../assets/book-fill.png" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-    <link rel="stylesheet" href="../../css/questions.css" />
+    <link rel="stylesheet" href="../css/add_quiz.css" />
     <script src="https://kit.fontawesome.com/d46d25282a.js" crossorigin="anonymous"></script>
   </head>
 
@@ -34,80 +35,84 @@
         <div class="row">
           <div class="col-3">
             <div class="list-group" id="list-tab" role="tablist">
+
               <a class="list-group-item list-group-item-action " id="list-profile-list" href="/dashboard" role="tab"
                 aria-controls="profile"><i class="fas fa-home"></i> Dashboard</a>
-              <a class="list-group-item list-group-item-action" id="list-profile-list" href="/home" role="tab"
+              <a class="list-group-item list-group-item-action" id="list-profile-list " href="/home" role="tab"
                 aria-controls="profile"><i class="fas fa-id-card"></i> Profile</a>
               <a class="list-group-item list-group-item-action" id="list-messages-list" href="/subjects" role="tab"
                 aria-controls="messages"><i class="fas fa-layer-group"></i> Subjects</a>
-              <a class="list-group-item list-group-item-action" id="list-profile-list" href="/addSubject"
-                role="tab" aria-controls="profile"><i class="fas fa-plus-circle"></i> Add subject</a>
+              <a class="list-group-item list-group-item-action" id="list-profile-list" href="/addSubject" role="tab"
+                aria-controls="profile"><i class="fas fa-plus-circle"></i> Add Subject</a>
               <a class="list-group-item list-group-item-action" id="list-profile-list" href="/quizzes" role="tab"
                 aria-controls="profile"><i class="fas fa-question-circle"></i> Quizzes</a>
-              <a class="list-group-item list-group-item-action" id="list-profile-list" href="/addQuiz" role="tab"
-                aria-controls="profile"><i class="fas fa-plus"></i> Add Quiz</a>
-                <a class="list-group-item list-group-item-action" id="list-profile-list" 
+              <a class="list-group-item list-group-item-action" id="list-profile-list" 
+                href="/addQuiz" role="tab" aria-controls="profile"><i class="fas fa-plus"></i> Add Quiz</a>
+                <a class="list-group-item list-group-item-action active" id="list-profile-list" data-toggle="list"
                 href="/addNotes" role="tab" aria-controls="profile"><i class="fas fa-edit"></i> Add Notes</a>
-              
-                <a class="list-group-item list-group-item-action" id="list-profile-list" href="/logout" role="tab"
+            
+              <a class="list-group-item list-group-item-action" id="list-profile-list" href="/logout" role="tab"
                 aria-controls="profile"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </div>
           </div>
           <div class="col-9">
             <div class="tab-content" id="nav-tabContent">
-              <div class="tab-pane fade" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui,
-                unde facere. Cumque impedit ab voluptates corporis expedita,
-                tempore temporibus reprehenderit neque assumenda veritatis ullam
-                repellendus natus excepturi mollitia deserunt dolorum!
-              </div>
+
               <div class="tab-pane fade show active" id="list-profile" role="tabpanel"
                 aria-labelledby="list-profile-list">
                 <div class="card text-center">
-                  <div class="card-header">Quiz Title</div>
+                  <div class="card-header">
+                    <h4>Add Notes</h4>
+                  </div>
 
                   <div class="card-body">
-                    <a href=<%=link %> class="btn btn-primary"
-                      >Add New Question</a>
-                    <br><br>
-                    <table class="table">
-                      <tbody>
-
-                        <% questions.forEach((question, index)=> { %>
-                          <tr>
-                            <td id="property"><i>
-                                <%= `Ques:${index+1}`%>
-                              </i></td>
-                            <td id="value">
-                              <div class="card" id="ques_card">
-                                <div class="card-body" id="ques_body">
-                                  <p>
-                                    <%= question.content %>
-                                  </p>
-                                  <% question.options.forEach((option)=> { %>
-                                    <div class="radio">
-                                      <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"
-                                          disabled="">
-                                        <%= option %>
-                                      </label>
-                                    </div>
-                                    <% }) %>
-                                      <blockquote class="blockquote mb-0">
-                                        <footer class="blockquote-footer">Correct answer - <cite title="Source Title">
-                                            <%= question.answer %>
-                                          </cite></footer>
-                                      </blockquote>
-                                </div>
+                    <form id="addQuiz-form">
+                      <div class="row">
+                        <div class="col offset-3">
+                          <div class="form-group row">
+                            <label for="staticEmail" class="col-form-label">
+                              <i class="fas fa-bookmark"></i>
+                            </label>
+                            <div class="col-sm-8">
+                              <div class="floating-label-group">
+                                <input type="text" id="addQuiz-name" class="form-control" autocomplete="off" autofocus
+                                  required />
+                                <label class="floating-label">Topic</label>
                               </div>
-                            </td>
-                          </tr>
-                          <% }) %>
+                            </div>
+                          </div>
 
-                      </tbody>
-                    </table>
+                         
+                          <div class="form-group row">
+                            <label for="staticEmail" class="col-form-label">
+                              <i class="fas fa-layer-group"></i>
+                            </label>
+                            <div class="col-sm-8" style="margin-left: -1%">
+                              <div class="floating-label-group">
+                                <select class="custom-select my-1 mr-sm-2" id="addQuiz-subject" required>
+                                  <option value="" disabled selected>Choose Subject</option>
+                                  <% subjects.forEach((subject)=> { %>
+                                    <option value=<%=subject._id %> >
+                                      <%= subject.name %>
+                                    </option>
+                                    <% }) %>
+                                </select>
+                                <label class="floating-label"></label>
+                              </div>
+                            </div>
+                          </div>
+                          <input type="file" id="myFile" name="filename">
+                          <br>
+                          <br />
+                          <div class="form-group row offset-3">
+                            <button type="submit" class="btn btn-primary">
+                              Add Notes
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
                     <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
-
                   </div>
                   <div class="card-footer text-muted">Engage '21</div>
                 </div>
@@ -130,8 +135,7 @@
       </div>
     </div>
   </body>
-
-  <script src="../../js/bundle.js"></script>
+  <script src="../js/bundle.js"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>
