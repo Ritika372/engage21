@@ -5,7 +5,7 @@ export const addQuestion = async (data) => {
   try {
     const res = await axios({
       method: "POST",
-      url: "http://localhost:3000/api/questions/",
+      url: "/api/questions/",
       data
     });
     if (res.data.status === "success") {

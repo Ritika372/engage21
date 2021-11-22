@@ -145,7 +145,7 @@ if (questionsButton) {
 }
 
 if (startQuizButtons) {
-  console.log(startQuizButtons);
+
   startQuizButtons.forEach((btn) => {
     btn.addEventListener("click", (event) => {
       const quizId = btn.dataset.quizid;

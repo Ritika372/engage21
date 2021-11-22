@@ -5,7 +5,7 @@ export const updateProfile = async (data) => {
   try {
     const res = await axios({
       method: "PATCH",
-      url: "http://localhost:3000/api/users/updateMe",
+      url: "/api/users/updateMe",
       data,
     });
     if (res.data.status === "success") {

@@ -52,7 +52,6 @@ exports.getQuestionsOfQuizById = async (req, res, next) => {
   try {
     const quizId = req.params.id;
     const questions = await Question.find({ quiz: quizId });
-    console.log(`/quizzes/${quizId}/addQuestion`);
     res.status(200).render("questions", {
       questions,
       link: `/quizzes/${quizId}/addQuestion`,

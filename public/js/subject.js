@@ -5,7 +5,7 @@ export const addSubject = async (name, description) => {
   try {
     const res = await axios({
       method: "POST",
-      url: "http://localhost:3000/api/subjects/",
+      url: "/api/subjects/",
       data: {
         name,
         description,

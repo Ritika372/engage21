@@ -5,7 +5,7 @@ export const addQuiz = async (data) => {
   try {
     const res = await axios({
       method: "POST",
-      url: "http://localhost:3000/api/quiz/",
+      url: "/api/quiz/",
       data,
     });
     if (res.data.status === "success") {
@@ -24,7 +24,7 @@ export const evaluateQuiz = async (questions, markedAnswers, quizId) => {
     window.onbeforeunload = null;
     const res = await axios({
       method: "POST",
-      url: `http://localhost:3000/api/quiz/${quizId}`,
+      url: `/api/quiz/${quizId}`,
       data: { questions, markedAnswers },
     });
     if (res.data.status === "success") {
@@ -43,7 +43,7 @@ export const updateQuiz = async(quizid,active) => {
   try{
     const res = await axios({
       method: "PATCH",
-      url: `http://localhost:3000/api/quiz/${quizid}`,
+      url: `/api/quiz/${quizid}`,
       data : {active},
     });
     if (res.data.status === "success") {

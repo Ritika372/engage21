@@ -37,6 +37,6 @@ module.exports = class Email {
     };
     //3.) create transport and send mail
     await this.newTransport().sendMail(mailOptions);
-    console.log("sent");
+
   }
 };

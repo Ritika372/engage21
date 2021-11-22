@@ -56,7 +56,7 @@ const sendErrorProd = (err, req, res) => {
       });
     }
   } else {
-    console.log(err);
+   
     if (err.isOperational) {
       res.status(err.statusCode).render("error", {
         title: "Something went wrong!",
