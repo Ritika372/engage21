@@ -10,6 +10,7 @@ const subjectSchema = new mongoose.Schema(
     description: {
       type: "String",
     },
+    notes: [String],
   },
   {
     toJson: { virtuals: true },

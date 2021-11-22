@@ -1,5 +1,18 @@
 const Subject = require("../Model/subjectModel");
 const customError = require("../utils/customError");
+const multer = require('multer');
+
+const multerStorage = multer.memoryStorage();
+
+const multerFilter = (req, file, cb) => {
+    cb(null, true);
+};
+
+const upload = multer({
+  storage: multerStorage,
+  fileFilter: multerFilter,
+});
+
 
 //Get one Subject by id
 exports.getOneSubject = async (req, res, next) => {
