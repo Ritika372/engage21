@@ -47,20 +47,20 @@ exports.getAddQuizPage = async (req, res, next) => {
 exports.getAddNotesPage = async (req, res, next) => {
   try {
     const subjects = await Subject.find();
-    res.status(200).render("addNotes", { subjects, user: req.user });
+    res.status(200).render("addSubjectNotes", { subjects, user: req.user });
   } catch (err) {
     next(err);
   }
 };
 exports.getUpdateProfilePage = async (req, res, next) => {
-  res.status(200).render("updateProfile", { user: req.user });
+  res.status(200).render("profileUpdate", { user: req.user });
 };
 
 exports.getStudyPage = async (req, res, next) => {
   try{
   const subjects = await Subject.find();
   
-  res.status(200).render("study", {
+  res.status(200).render("studyNotes", {
     user: req.user,
     subjects,
   });
