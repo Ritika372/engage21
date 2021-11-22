@@ -26,11 +26,7 @@ a {
   text-decoration: underline;
 }
 
-input[id^="addQuiz"] {
-  border: 0ch;
-  border-bottom: 1px solid #999;
-}
-textarea[id^="addQuiz"] {
+#input {
   border: 0ch;
   border-bottom: 1px solid #999;
 }
