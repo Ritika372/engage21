@@ -1,7 +1,7 @@
 import "@babel/polyfill";
 
 import { login, signup } from "./login";
-import { addSubject } from "./subject";
+import { addSubject, addNotes } from "./subject";
 import { addQuiz, evaluateQuiz, updateQuiz } from "./quiz";
 import { addQuestion } from "./question";
 import { updateProfile } from "./user";
@@ -13,6 +13,7 @@ const addQuizForm = document.getElementById("addQuiz-form");
 const addQuesForm = document.getElementById("addQue-form");
 const submitQuizForm = document.getElementById("submitQuiz-form");
 const updateProfileForm = document.getElementById("updateProfile-form");
+const addNotesForm = document.getElementById("addNotes-form");
 
 const questionsButton = document.getElementsByName("open-questions");
 const startQuizButtons = document.getElementsByName("start-quiz");
@@ -71,7 +72,8 @@ if (addQuizForm) {
     data.negativeMarking = parseFloat(
       document.getElementById("addQuiz-negMarking").value
     );
-    data.timer = parseFloat(document.getElementById("addQuiz-timer").value) * 60;
+    data.timer =
+      parseFloat(document.getElementById("addQuiz-timer").value) * 60;
     addQuiz(data);
   });
 }
@@ -145,7 +147,6 @@ if (questionsButton) {
 }
 
 if (startQuizButtons) {
-
   startQuizButtons.forEach((btn) => {
     btn.addEventListener("click", (event) => {
       const quizId = btn.dataset.quizid;
@@ -170,5 +171,17 @@ if (markQuizActive) {
       const active = input.checked;
       updateQuiz(quizid, active);
     });
+  });
+}
+
+if (addNotesForm) {
+  addNotesForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const subjectId = document.getElementById("addNotes-subject").value;
+    const form = new FormData();
+    form.append('filename', document.getElementById('myFile').files[0]);
+    form.append('notesname', document.getElementById("addNotes-name").value)
+
+    addNotes(form, subjectId);
   });
 }

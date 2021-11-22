@@ -18,6 +18,8 @@ router
   .patch(authController.restrictTo("admin"), subjectController.updateSubject)
   .delete(authController.restrictTo("admin"), subjectController.deleteSubject);
 
+router.post("/:id/addNotes" , subjectController.uploadNotes, subjectController.updateSubject);
+
 router.use("/:subId/quiz", quizRouter);
 
 module.exports = router;

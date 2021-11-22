@@ -44,7 +44,6 @@ exports.getAddQuizPage = async (req, res, next) => {
   }
 };
 
-
 exports.getAddNotesPage = async (req, res, next) => {
   try {
     const subjects = await Subject.find();
@@ -216,7 +215,6 @@ exports.getAdminDashboard = async (req, res, next) => {
         avgPerc: doc.avgMarks.toFixed(2),
       });
     }
-    
     res.status(200).render("adminDashboard", { results });
   } catch (err) {
     next(err);

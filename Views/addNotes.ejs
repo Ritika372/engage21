@@ -66,7 +66,7 @@
                   </div>
 
                   <div class="card-body">
-                    <form id="addQuiz-form">
+                    <form  id="addNotes-form"enctype="multipart/form-data" >
                       <div class="row">
                         <div class="col offset-3">
                           <div class="form-group row">
@@ -75,7 +75,7 @@
                             </label>
                             <div class="col-sm-8">
                               <div class="floating-label-group">
-                                <input type="text" id="addQuiz-name" class="form-control" autocomplete="off" autofocus
+                                <input type="text" id="addNotes-name" class="form-control" autocomplete="off" autofocus
                                   required />
                                 <label class="floating-label">Topic</label>
                               </div>
@@ -89,7 +89,7 @@
                             </label>
                             <div class="col-sm-8" style="margin-left: -1%">
                               <div class="floating-label-group">
-                                <select class="custom-select my-1 mr-sm-2" id="addQuiz-subject" required>
+                                <select class="custom-select my-1 mr-sm-2" id="addNotes-subject" required>
                                   <option value="" disabled selected>Choose Subject</option>
                                   <% subjects.forEach((subject)=> { %>
                                     <option value=<%=subject._id %> >

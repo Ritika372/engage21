@@ -1,6 +1,17 @@
 const mongoose = require("mongoose");
 const Quiz = require("./quizModel");
 
+const notesSchema = new mongoose.Schema({
+  name: {
+    type: "String",
+    required: [true, "Name is required."],
+  },
+  filename: {
+    type: String,
+    required: [true, "Please upload a file"],
+  },
+});
+
 const subjectSchema = new mongoose.Schema(
   {
     name: {
@@ -10,7 +21,7 @@ const subjectSchema = new mongoose.Schema(
     description: {
       type: "String",
     },
-    notes: [String],
+    notes: [notesSchema],
   },
   {
     toJson: { virtuals: true },
