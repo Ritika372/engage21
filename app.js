@@ -14,6 +14,7 @@ const compression = require("compression");
 const app = express();
 
 app.set("view engine", "ejs");
+app.set('views', path.join(__dirname, './views'));
 
 //Parsing request body in http request
 app.use(express.json());
