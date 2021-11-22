@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="../css/quiz.css">
         <script src="https://kit.fontawesome.com/d46d25282a.js" crossorigin="anonymous"></script>
         <style>
-            .chartBox{
+            .chartBox {
                 height: 400px;
                 width: 400px;
                 margin-left: 20%;
@@ -46,16 +46,17 @@
                 <div class="row">
                     <div class="col-3">
                         <div class="list-group" id="list-tab" role="tablist">
-                            <a class="list-group-item list-group-item-action " id="list-profile-list" href="/dashboard"
-                                role="tab" aria-controls="profile"><i class="fas fa-home"></i> Dashboard</a>
+                            <a class="list-group-item list-group-item-action active " id="list-profile-list"
+                                href="/dashboard" role="tab" aria-controls="profile"><i class="fas fa-home"></i>
+                                Dashboard</a>
                             <a class="list-group-item list-group-item-action " id="list-profile-list" href="/home"
                                 role="tab" aria-controls="profile"><i class="fas fa-id-card"></i> Profile</a>
                             <a class="list-group-item list-group-item-action" id="list-messages-list" href="/subjects"
                                 role="tab" aria-controls="messages"><i class="fas fa-list"></i> Subjects</a>
                             <a class="list-group-item list-group-item-action" id="list-profile-list " href="/addSubject"
                                 role="tab" aria-controls="profile"><i class="fas fa-plus-circle"></i> Add Subject</a>
-                            <a class="list-group-item list-group-item-action active" id="list-profile-list"
-                                href="#list-profile" data-toggle="list" role="tab" aria-controls="profile"><i
+                            <a class="list-group-item list-group-item-action" id="list-profile-list" href="/quizzes"
+                                data-toggle="list" role="tab" aria-controls="profile"><i
                                     class="fas fa-question-circle"></i> Quizzes</a>
                             <a class="list-group-item list-group-item-action" id="list-profile-list" href="/addQuiz"
                                 role="tab" aria-controls="profile"><i class="fas fa-plus"></i> Add Quiz</a>
@@ -81,10 +82,48 @@
                                                 <span id='variableJSON' hidden>
                                                     <%= JSON.stringify(results); %>
                                                 </span>
-                                                <div class = "chartBox">
-                                                <canvas width="400" height="400" id="perfChart"></canvas></div>
+                                                <div class="chartBox">
+                                                    <canvas width="400" height="400" id="perfChart"></canvas>
+                                                </div>
 
-                                            </div>
+                                            </div><br><br>
+                                            <table class="table table-bordered" id="print">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Name</th>
+                                                        <th scope="col">Average Percentage</th>
+                                                        <th scope="col">Quiz Level (Based on Average scores)</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% results.forEach((result,index)=> { %>
+                                                        <tr>
+                                                            <th scope="row">
+                                                                <%= `${index+1}` %>
+                                                            </th>
+                                                            <td>
+                                                                <%= result.quiz.name %>
+                                                            </td>
+                                                            <td>
+                                                                <%= `${result.avgPerc} %` %>
+                                                            </td>
+
+                                                            <% if(result.avgPerc>= 70) { %>
+                                                                
+                                                                <td>Easy</td>
+                                                            <% } else if(result.avgPerc>= 40) { %>
+                                                                <td>Medium</td>
+                                                            <% } else { %>
+                                                                <td>Hard</td>
+                                                            <%} %>
+
+
+                                                        </tr>
+                                                        <% }) %>
+
+                                                </tbody>
+                                            </table>
                                             <div class="card-footer text-muted">Engage '21</div>
 
                                         </div>
