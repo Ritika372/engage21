@@ -23,11 +23,10 @@ body {
   text-decoration: underline;
 }
 
-#input {
+input[id^="login"] {
   border: 0ch;
   border-bottom: 1px solid #999;
 }
-
 .floating-label-group {
   position: relative;
 }
