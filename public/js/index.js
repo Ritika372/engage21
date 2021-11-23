@@ -177,6 +177,9 @@ if (markQuizActive) {
 if (addNotesForm) {
   addNotesForm.addEventListener("submit", (event) => {
     event.preventDefault();
+
+    document.getElementById("addNotes-btn").innerText = "Adding...";
+
     const subjectId = document.getElementById("addNotes-subject").value;
     const form = new FormData();
     form.append('filename', document.getElementById('myFile').files[0]);
