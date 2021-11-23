@@ -131,6 +131,7 @@ exports.evaluateQuiz = async (req, res, next) => {
       correctAnswers,
       attempted: questions.length,
       percentage,
+      createdAt: Date.now(),
     });
 
     const resultMail = await Result.findById(result._id);
