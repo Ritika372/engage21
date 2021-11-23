@@ -17,6 +17,7 @@ router.get("/quizzes/:id/result", viewController.getQuizResultPage);
 router.get("/home", viewController.getProfilePage);
 router.get("/logout", viewController.logout);
 router.get("/study", viewController.getStudyPage);
+router.get("/:id/file", viewController.getFile)
 
 router.use(authController.restrictTo("admin"));
 

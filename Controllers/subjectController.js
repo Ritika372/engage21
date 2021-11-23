@@ -1,23 +1,50 @@
 const Subject = require("../Model/subjectModel");
 const customError = require("../utils/customError");
 const multer = require("multer");
-const sharp = require("sharp");
+const { GridFsStorage } = require("multer-gridfs-storage");
+const mongoose = require("mongoose");
+const crypto = require("crypto");
+const path = require("path");
 
-const multerStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "public/notes");
-  },
-  filename: (req, file, cb) => {
-    const ext = file.mimetype.split("/")[1];
-    cb(null, `subject-${req.params.id}-${Date.now()}.${ext}`);
+const db = process.env.DATABASE;
+
+const storage = new GridFsStorage({
+  url: db,
+  options: { useNewUrlParser: true, useUnifiedTopology: true },
+  file: (req, file) => {
+    return new Promise((resolve, reject) => {
+      crypto.randomBytes(16, (err, buf) => {
+        if (err) {
+          return reject(err);
+        }
+        const filename = buf.toString("hex") + path.extname(file.originalname);
+        const fileInfo = {
+          filename: filename,
+          bucketName: "files",
+        };
+        resolve(fileInfo);
+      });
+    });
   },
 });
 
-const upload = multer({
-  storage: multerStorage,
+const store = multer({
+  storage,
 });
 
-exports.uploadNotes = upload.single("filename");
+exports.uploadNotes = (req, res, next) => {
+  const upload = store.single("filename");
+  upload(req, res, function (err) {
+    if (err instanceof multer.MulterError) {
+      return res.status(400).send("File too large");
+    } else if (err) {
+      return res.sendStatus(500);
+    }
+    next();
+  });
+};
+
+exports.uploadNotes = store.single("filename");
 
 //Get one Subject by id
 exports.getOneSubject = async (req, res, next) => {
@@ -71,15 +98,15 @@ exports.updateSubject = async (req, res, next) => {
     if (req.file) {
       const subject = await Subject.findById(req.params.id);
       newNotes = {
-        filename: req.file.filename,
+        filename: req.file,
         name: req.body.notesname,
+        id: req.file.id,
       };
       let notes = [];
-      if(!subject.notes) {
+      if (!subject.notes) {
         notes.push(newNotes);
         req.body.notes = notes;
-      }
-      else {
+      } else {
         notes = subject.notes;
         notes.push(newNotes);
         req.body.notes = notes;

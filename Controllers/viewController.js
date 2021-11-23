@@ -3,6 +3,8 @@ const Quiz = require("../Model/quizModel");
 const Result = require("../Model/resultModel");
 const Question = require("../Model/questionModel");
 const customError = require("../utils/customError");
+const db = require("../db");
+
 
 exports.getLoginForm = async (req, res, next) => {
   res.status(200).render("login");
@@ -57,17 +59,16 @@ exports.getUpdateProfilePage = async (req, res, next) => {
 };
 
 exports.getStudyPage = async (req, res, next) => {
-  try{
-  const subjects = await Subject.find();
-  
-  res.status(200).render("studyNotes", {
-    user: req.user,
-    subjects,
-  });
-}
- catch (err) {
-  next(err);
-}
+  try {
+    const subjects = await Subject.find();
+
+    res.status(200).render("studyNotes", {
+      user: req.user,
+      subjects,
+    });
+  } catch (err) {
+    next(err);
+  }
 };
 exports.getQuestionsOfQuizById = async (req, res, next) => {
   try {
@@ -204,5 +205,17 @@ exports.getAdminDashboard = async (req, res, next) => {
     res.status(200).render("adminDashboard", { results });
   } catch (err) {
     next(err);
+  }
+};
+
+exports.getFile = async (req, res, next) => {
+  try {
+    const file = await db.getGridFSFiles(req.params.id);
+    res.setHeader('content-type', file.contentType);
+    const readStream = db.createGridFSReadStream(req.params.id);
+    readStream.pipe(res);
+  } catch (err) {
+    console.log(err);
+    next(new customError("File not found", 400));
   }
 };

@@ -20,6 +20,7 @@ router
 
 router.post("/:id/addNotes" , subjectController.uploadNotes, subjectController.updateSubject);
 
+
 router.use("/:subId/quiz", quizRouter);
 
 module.exports = router;

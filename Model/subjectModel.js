@@ -4,12 +4,11 @@ const Quiz = require("./quizModel");
 const notesSchema = new mongoose.Schema({
   name: {
     type: "String",
-    required: [true, "Name is required."],
   },
   filename: {
     type: String,
-    required: [true, "Please upload a file"],
   },
+  id: String,
 });
 
 const subjectSchema = new mongoose.Schema(

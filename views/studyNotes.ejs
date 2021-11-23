@@ -75,7 +75,7 @@
                                 <b>Notes Added : </b>
                                 <% subject.notes.forEach((note)=> { %>
                                   <a style="color: blue;text-decoration: underline;" class="card-link"
-                                    href="<%= `/notes/${note.filename}` %>">
+                                    href="<%= `/${note.id}/file` %>">
                                     <%= note.name %>
                                   </a>
                                   <% }) %>
@@ -107,7 +107,7 @@
                         <% if(subject.notes.length !==0) { %>
                           <% subject.notes.forEach((note)=> { %>
                             <li class="list-group-item"><a style="color: blue;text-decoration: underline;"
-                                href="<%= `/notes/${note.filename}` %>">
+                                href="<%= `/${note.id}/file` %>">
                                 <%= note.name %>
                               </a></li>
                             <% }) %>

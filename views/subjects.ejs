@@ -80,7 +80,7 @@
                           <% if(subject.notes.length !==0) { %>
                             <b>Notes Added : </b>
                             <% subject.notes.forEach((note)=> { %>
-                              <a style="color: blue;text-decoration: underline;" class="card-link" href="<%= `/notes/${note.filename}` %>">
+                              <a style="color: blue;text-decoration: underline;" class="card-link" href="<%= `/${note.id}/file` %>">
                                 <%= note.name %>
                               </a>
                               <% }) %>
