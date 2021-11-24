@@ -4,6 +4,7 @@ const Result = require("../Model/resultModel");
 const Question = require("../Model/questionModel");
 const customError = require("../utils/customError");
 const db = require("../db");
+const seedrandom = require("seedrandom");
 
 
 exports.getLoginForm = async (req, res, next) => {
@@ -109,8 +110,9 @@ exports.getRandomQuestionsOfQuizById = async (req, res, next) => {
     const quiz = await Quiz.findById(req.params.id);
     let questions = quiz.questions;
     if (questions.length > quiz.numberOfQuestions) {
+      let randomNumberGenerator = seedrandom();
       // Shuffle
-      const shuffled = questions.sort(() => 0.5 - Math.random());
+      const shuffled = questions.sort(() => 0.5 - randomNumberGenerator());
 
       // Get sub-array of first n elements after shuffled
       questions = shuffled.slice(0, quiz.numberOfQuestions);
