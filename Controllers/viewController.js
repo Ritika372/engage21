@@ -54,6 +54,7 @@ exports.getAddNotesPage = async (req, res, next) => {
     next(err);
   }
 };
+
 exports.getUpdateProfilePage = async (req, res, next) => {
   res.status(200).render("profileUpdate", { user: req.user });
 };
@@ -70,6 +71,7 @@ exports.getStudyPage = async (req, res, next) => {
     next(err);
   }
 };
+
 exports.getQuestionsOfQuizById = async (req, res, next) => {
   try {
     const quizId = req.params.id;
@@ -208,6 +210,7 @@ exports.getAdminDashboard = async (req, res, next) => {
   }
 };
 
+//for opening the notes
 exports.getFile = async (req, res, next) => {
   try {
     const file = await db.getGridFSFiles(req.params.id);

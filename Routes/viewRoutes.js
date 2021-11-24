@@ -3,10 +3,12 @@ const viewController = require("../Controllers/viewController");
 const authController = require("../Controllers/authController");
 const router = express.Router();
 
+//routes accessible to anyone
 router.get("/", viewController.getLoginForm);
 router.get("/login", viewController.getLoginForm);
 router.get("/signup", viewController.getSignUpForm);
 
+//only access these routes when a logged in user is there.
 router.use(authController.protect);
 
 router.get(
@@ -18,6 +20,8 @@ router.get("/home", viewController.getProfilePage);
 router.get("/logout", viewController.logout);
 router.get("/study", viewController.getStudyPage);
 router.get("/:id/file", viewController.getFile)
+
+//Restricted to Admin only.
 
 router.use(authController.restrictTo("admin"));
 

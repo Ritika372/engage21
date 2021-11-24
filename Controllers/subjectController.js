@@ -8,6 +8,7 @@ const path = require("path");
 
 const db = process.env.DATABASE;
 
+//for uploading notes of a particular subject.
 const storage = new GridFsStorage({
   url: db,
   options: { useNewUrlParser: true, useUnifiedTopology: true },
@@ -31,18 +32,6 @@ const storage = new GridFsStorage({
 const store = multer({
   storage,
 });
-
-exports.uploadNotes = (req, res, next) => {
-  const upload = store.single("filename");
-  upload(req, res, function (err) {
-    if (err instanceof multer.MulterError) {
-      return res.status(400).send("File too large");
-    } else if (err) {
-      return res.sendStatus(500);
-    }
-    next();
-  });
-};
 
 exports.uploadNotes = store.single("filename");
 
@@ -92,9 +81,10 @@ exports.createSubject = async (req, res, next) => {
   }
 };
 
-//Update Subject
+//Update Subject 
 exports.updateSubject = async (req, res, next) => {
   try {
+    //if subject notes are there, update them as well.
     if (req.file) {
       const subject = await Subject.findById(req.params.id);
       newNotes = {

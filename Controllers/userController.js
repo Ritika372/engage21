@@ -34,23 +34,6 @@ exports.getUser = async (req, res, next) => {
   }
 };
 
-exports.getOneUser = async (req, res, next) => {
-  try {
-    const user = User.findById(req.params.id);
-    if (!user) {
-      return next(new customError("User doens't exist.", 400));
-    }
-    res.status(200).json({
-      status: "success",
-      data: {
-        user,
-      },
-    });
-  } catch (err) {
-    next(err);
-  }
-};
-
 //Update user details (NOT FOR UPDATING PASSWORD)
 exports.updateUser = async (req, res, next) => {
   try {

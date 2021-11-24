@@ -39,6 +39,7 @@ const resultSchema = new mongoose.Schema(
   }
 );
 
+//populating quiz and user when a "find" query will be there for result. 
 resultSchema.pre(/^find/, async function (next) {
   this.populate({
     path: "quiz",

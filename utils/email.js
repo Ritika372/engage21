@@ -27,7 +27,7 @@ module.exports = class Email {
         result: this.result,
       })
     );
-    //2.) create mail options
+    
     const mailOptions = {
       from: this.from,
       to: this.to,
@@ -35,7 +35,7 @@ module.exports = class Email {
       html: html,
       text: htmlToText(html),
     };
-    //3.) create transport and send mail
+ 
     await this.newTransport().sendMail(mailOptions);
 
   }

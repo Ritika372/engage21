@@ -2,31 +2,6 @@ const Question = require("../Model/questionModel");
 const customError = require("../utils/customError");
 const Quiz = require("../Model/quizModel");
 
-//Get shuffled lst of questions
-exports.getRandomQuestions = async (req, res, next) => {
-  try {
-    const quiz = await Quiz.findById(req.params.quizId);
-    const questions = quiz.questions;
-    if (questions.length > quiz.numberOfQuestions) {
-      // Shuffle
-      const shuffled = questions.sort(() => 0.5 - Math.random());
-
-      // Get sub-array of first n elements after shuffled
-      questions = shuffled.slice(0, quiz.numberOfQuestions);
-
-      res.status(200).json({
-        status: "success",
-        result: questions.length,
-        data: {
-          questions,
-        },
-      });
-    }
-  } catch (err) {
-    next(err);
-  }
-};
-
 //Get one question by id
 exports.getOneQuestion = async (req, res, next) => {
   try {

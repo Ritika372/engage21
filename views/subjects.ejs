@@ -80,15 +80,16 @@
                           <% if(subject.notes.length !==0) { %>
                             <b>Notes Added : </b>
                             <% subject.notes.forEach((note)=> { %>
-                              <a style="color: blue;text-decoration: underline;" class="card-link" href="<%= `/${note.id}/file` %>">
+                              <a style="color: blue;text-decoration: underline;" class="card-link"
+                                href="<%= `/${note.id}/file` %>">
                                 <%= note.name %>
                               </a>
                               <% }) %>
-                                  <% } %>
+                                <% } %>
                         </div>
                       </div><br>
                       <% } ) %>
-                      <a style="margin-left: 40%;" href="/addSubject" class="btn btn-primary">Add New Subject</a>
+                        <a style="margin-left: 40%;" href="/addSubject" class="btn btn-primary">Add New Subject</a>
                   </div>
                   <div style="padding-left: 43%;" class="card-footer text-muted">Engage '21</div>
                 </div>

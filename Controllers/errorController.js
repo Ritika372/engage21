@@ -1,3 +1,5 @@
+//Handling different types of error by showing a relevnat message to the users.
+
 const customError = require("../utils/customError");
 
 const handleCastErrorDB = (err) => {
@@ -74,28 +76,28 @@ const sendErrorProd = (err, req, res) => {
 module.exports = (err, req, res, next) => {
   err.status = err.status || "error";
   err.statusCode = err.statusCode || 500;
-  //   if (process.env.NODE_ENV === "development") {
-  sendErrorDev(err, req, res);
-  //}
+  // //   if (process.env.NODE_ENV === "development") {
+  // sendErrorDev(err, req, res);
+  // //}
   //    else {
-  //     let error = { ...err };
-  //     error.name = err.name;
-  //     error.message = err.message;
-  //     if (err.name === "CastError") {
-  //       error = handleCastErrorDB(error);
-  //     }
-  //     if (error.code === 11000) {
-  //       error = handleDuplicateKeyDB(error);
-  //     }
-  //     if (error.name === "ValidationError") {
-  //       error = handleValidationErrorDB(error);
-  //     }
-  //     if (error.name === "JsonWebTokenError") {
-  //       error = handleJsonWebTokenError();
-  //     }
-  //     if (error.name === "TokenExpiredError") {
-  //       error = handleExpiredJWTError();
-  //     }
-  //     sendErrorProd(error, req, res);
+      let error = { ...err };
+      error.name = err.name;
+      error.message = err.message;
+      if (err.name === "CastError") {
+        error = handleCastErrorDB(error);
+      }
+      if (error.code === 11000) {
+        error = handleDuplicateKeyDB(error);
+      }
+      if (error.name === "ValidationError") {
+        error = handleValidationErrorDB(error);
+      }
+      if (error.name === "JsonWebTokenError") {
+        error = handleJsonWebTokenError();
+      }
+      if (error.name === "TokenExpiredError") {
+        error = handleExpiredJWTError();
+      }
+      sendErrorProd(error, req, res);
   //   }
 };

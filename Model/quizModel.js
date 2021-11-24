@@ -49,6 +49,7 @@ const quizSchema = new mongoose.Schema(
   }
 );
 
+//saving all questions in quiz model also.
 quizSchema.pre("save", async function (next) {
   const quePromises = this.questions.map(
     async (id) => await Question.findById(id)
@@ -57,6 +58,7 @@ quizSchema.pre("save", async function (next) {
   next();
 });
 
+//populating questions and subject on a find query for quiz.
 quizSchema.pre(/^find/, async function (next) {
   this.populate({
     path: "questions",

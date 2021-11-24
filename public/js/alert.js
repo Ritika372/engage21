@@ -1,3 +1,5 @@
+///For showing and hiding alerts to user.
+
 export const showAlert = (type, message) => {
   hideAlert();
   const markup = `<div class = 'alert alert--${type}'>${message}</div>`;

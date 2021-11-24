@@ -20,6 +20,7 @@ app.use(express.json());
 
 app.use(compression());
 
+//to read cookies
 app.use(cookieParser());
 
 app.use(express.static("public"));

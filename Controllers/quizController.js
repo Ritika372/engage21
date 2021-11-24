@@ -99,6 +99,8 @@ exports.deleteQuiz = async (req, res, next) => {
   }
 };
 
+
+//Evaluate quiz
 exports.evaluateQuiz = async (req, res, next) => {
   try {
     const quizId = req.params.id;
@@ -134,6 +136,7 @@ exports.evaluateQuiz = async (req, res, next) => {
       createdAt: Date.now(),
     });
 
+    //Sending the result in mail.
     const resultMail = await Result.findById(result._id);
     await new Email(req.user, resultMail).send("resultMail");
 

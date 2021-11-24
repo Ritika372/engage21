@@ -137,9 +137,7 @@
                 </div>
             </div>
         </div>
-
     </body>
-
     <script src="../js/bundle.js"></script>
     <script>
         let labels = [];
@@ -152,8 +150,6 @@
             labels.push(`${result.quiz.name} `);
             data.push(result.avgPerc);
         });
-
-
         let perfChart = document.getElementById("perfChart").getContext('2d');
         let studentPerfChart = new Chart(perfChart, {
             type: 'pie',
@@ -204,7 +200,6 @@
                 }
             },
         });
-
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

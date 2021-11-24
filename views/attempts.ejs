@@ -48,9 +48,9 @@
                 aria-controls="profile"><i class="fas fa-question-circle"></i> Quizzes</a>
               <a class="list-group-item list-group-item-action" id="list-profile-list" href="/addQuiz" role="tab"
                 aria-controls="profile"><i class="fas fa-plus"></i> Add Quiz</a>
-                <a class="list-group-item list-group-item-action" id="list-profile-list" 
-                href="/addNotes" role="tab" aria-controls="profile"><i class="fas fa-edit"></i> Add Notes</a>
-            
+              <a class="list-group-item list-group-item-action" id="list-profile-list" href="/addNotes" role="tab"
+                aria-controls="profile"><i class="fas fa-edit"></i> Add Notes</a>
+
               <a class="list-group-item list-group-item-action" id="list-profile-list" href="/logout" role="tab"
                 aria-controls="profile"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </div>
@@ -156,7 +156,7 @@
     var results = JSON.parse(document.getElementById("variableJSON").innerHTML);
     document.getElementById("variableJSON").remove();
 
-    resultsSliced = results.slice(0,3);
+    resultsSliced = results.slice(0, 3);
     resultsSliced.forEach((result) => {
       labels.push(`${result.user.firstName} ${result.user.lastName} `);
       data.push(result.percentage);

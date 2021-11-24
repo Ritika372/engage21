@@ -4,6 +4,7 @@ var gfs, gridFSBucket;
 
 const db = process.env.DATABASE;
 
+//connecting DATABASE and initialising bucket in mongodb for storing notes
 exports.connectdb = async () => {
   try {
     await mongoose.connect(db, {

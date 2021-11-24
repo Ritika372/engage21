@@ -1,130 +1,132 @@
 <html>
-    <head>
-        <meta charset="utf-8" />
 
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+  <head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Result</title>
-        <link rel="icon" href="../../assets/book-fill.png">
-        <link
-        rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous"
-      />
-      <link rel="stylesheet" href="../../css/result.css">
-      <script src="https://kit.fontawesome.com/d46d25282a.js" crossorigin="anonymous"></script>
-       
-    </head>
-    <body >
-        <nav class="navbar navbar-dark  navbar-expand-lg" >
-            <a class="navbar-brand" href="#"><i class="fas fa-book"></i> Exam Portal</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                </ul>
-                <span >
-                    
-                    <a class="navbar-brand" href="#"><%= result[0].user.firstName%></a>
-                    <a class="navbar-brand" href="/logout">Logout <i class="fas fa-sign-out-alt"></i></a>
-                  </span>
-            </div>
-          </nav>
-          <div class="bootstrap-wrapper">
-            <div class="container">
-       
-                
-                
-                    <div class="card text-center">
-                      
-                        <div class="card-header">
-                        <%= result[0].quiz.subject.name %> Result
-                        </div>
-                        <img  src="../../assets/profile.jpg" alt="">
-                        <div class="card-body">
-                          <h5 class="card-title"><%= result[0].user.firstName %> <%= result[0].user.lastName %></h5>
-                          <table class="table table-hover" >
-                            <tbody>
-                              <tr>
-                                <td id="property">Quiz Title</td>
-                                <td id="value"><%= result[0].quiz.name %></td>
-                              </tr>
-                              <tr>
-                                <td id="property">Subject</td>
-                                <td id="value"><%= result[0].quiz.subject.name %></td>
-                              </tr>
-                              <tr>
-                               
-                                <td id="property">Total Questions</td>
-                                <td id="value"><%= result[0].quiz.numberOfQuestions %></td>
-                              </tr>
-                              <tr>
-                               
-                                <td id="property">Max Marks</td>
-                                <td id="value"><%= result[0].quiz.maxMarks%></td>
-                              </tr>
-                              <tr>
-                                
-                                <td id="property">Attempted Questions</td>
-                                <td id="value"><%= result[0].attempted %></td>
-                              </tr>
-                              <tr>
-                                
-                                <td id="property">Correct Answered</td>
-                                <td id="value"><%= result[0].correctAnswers %></td>
-                              </tr>
-                              <tr>
-                                
-                                <td id="property">Marks Obtained</td>
-                                <td id="value"><%= result[0].marksScored %></td>
-                              </tr>
-                              <tr>
-                                
-                                <td id="property">Attempt Date</td>
-                                <td id="value"><%= result[0].createdAt.toLocaleString('en-IN',{ weekday: 'short', year: 'numeric', month: 'long', day: 'numeric', hour : 'numeric',minute: 'numeric'}) %></td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
-                          <a onclick=" window.print();" style="color: white;" class="btn btn-primary">Print</a>
-                          <a href="/home" class="btn btn-info">Home</a>
-                        </div>
-                        <div class="card-footer text-muted">
-                          Engage '21
-                        </div>
-                      </div>
-                    </div>
-                     </div>
-                </div>
-              </div>
-            </div>
+    <link rel="icon" href="../../assets/book-fill.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../../css/result.css">
+    <script src="https://kit.fontawesome.com/d46d25282a.js" crossorigin="anonymous"></script>
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark  navbar-expand-lg">
+      <a class="navbar-brand" href="#"><i class="fas fa-book"></i> Exam Portal</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <span>
+
+          <a class="navbar-brand" href="#">
+            <%= result[0].user.firstName%>
+          </a>
+          <a class="navbar-brand" href="/logout">Logout <i class="fas fa-sign-out-alt"></i></a>
+        </span>
+      </div>
+    </nav>
+    <div class="bootstrap-wrapper">
+      <div class="container">
+        <div class="card text-center">
+
+          <div class="card-header">
+            <%= result[0].quiz.subject.name %> Result
           </div>
-          
-          
-          
-    </body>
+          <img src="../../assets/profile.jpg" alt="">
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= result[0].user.firstName %>
+                <%= result[0].user.lastName %>
+            </h5>
+            <table class="table table-hover">
+              <tbody>
+                <tr>
+                  <td id="property">Quiz Title</td>
+                  <td id="value">
+                    <%= result[0].quiz.name %>
+                  </td>
+                </tr>
+                <tr>
+                  <td id="property">Subject</td>
+                  <td id="value">
+                    <%= result[0].quiz.subject.name %>
+                  </td>
+                </tr>
+                <tr>
 
-<script src="../../js/bundle.js"></script>
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
+                  <td id="property">Total Questions</td>
+                  <td id="value">
+                    <%= result[0].quiz.numberOfQuestions %>
+                  </td>
+                </tr>
+                <tr>
 
-   
+                  <td id="property">Max Marks</td>
+                  <td id="value">
+                    <%= result[0].quiz.maxMarks%>
+                  </td>
+                </tr>
+                <tr>
+
+                  <td id="property">Attempted Questions</td>
+                  <td id="value">
+                    <%= result[0].attempted %>
+                  </td>
+                </tr>
+                <tr>
+
+                  <td id="property">Correct Answered</td>
+                  <td id="value">
+                    <%= result[0].correctAnswers %>
+                  </td>
+                </tr>
+                <tr>
+
+                  <td id="property">Marks Obtained</td>
+                  <td id="value">
+                    <%= result[0].marksScored %>
+                  </td>
+                </tr>
+                <tr>
+
+                  <td id="property">Attempt Date</td>
+                  <td id="value">
+                    <%= result[0].createdAt.toLocaleString('en-IN',{ weekday: 'short' , year: 'numeric' , month: 'long'
+                      , day: 'numeric' , hour : 'numeric' ,minute: 'numeric' }) %>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <a onclick=" window.print();" style="color: white;" class="btn btn-primary">Print</a>
+            <a href="/home" class="btn btn-info">Home</a>
+          </div>
+          <div class="card-footer text-muted">
+            Engage '21
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="../../js/bundle.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+
 </html>

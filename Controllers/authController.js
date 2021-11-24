@@ -128,6 +128,8 @@ exports.restrictTo = (...roles) => {
   };
 };
 
+
+//logout by clearing the cookie.
 exports.logout = async (req, res, next) => {
   try {
     res.cookie("jwt", "loggedOut", {
