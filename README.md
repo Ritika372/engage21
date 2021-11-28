@@ -4,7 +4,7 @@ Head to https://exam-portal-engage.herokuapp.com/ for hosted website.
 
 To run this project on a local computer, clone the project first.
 Run "npm i" in bash. This will install all necessary modules.
-Then run "npm start".
+Then run "npm start". Server will start on localhost:3000
 
 By default, a user can only register as student.
 For setting the role as admin, only the person with database access can modify that, thus prevented illegal admin access.
