@@ -20,13 +20,13 @@ Features List:
 4. Publish/Unpublish quiz anytime.
 5. Random set of questions for different users in a same quiz will be there, thus preventing cheating.
 6. Auto submission when quiz timer ends.
-7. Prevents reloading, going back in a quiz as question set will be chnaged.
+7. Prevents reloading, going back in a quiz as question set will be changed.
 8. Only 1 attempt per quiz for each user.
 9. Quiz has negative marking schemes also.
 10. Quiz is auto-graded atfer submission.
 11. Can print quiz result.
 12. Quiz result will be mailed to registered user email id.
-13. Performance chart for a particular user in al quizzes.
+13. Performance chart for a particular user in all quizzes attempted by him till now.
 14. Admin can see quiz attempts.
 15. Admin can print as well as download all quiz results for different students in an excel file.
 16. For each quiz, top 3 performer scores in a horizontal bar graph.
