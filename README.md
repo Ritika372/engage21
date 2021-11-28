@@ -6,10 +6,17 @@ To run this project on a local computer, clone the project first.
 Run "npm i" in bash. This will install all necessary modules.
 Then run "npm start".
 
+By default, a user can only register as student.
+For setting the role as admin, only the person with database access can modify that, thus prevented illegal admin access.
+For testing purposes: admin credentials are: 
+Email Id: admin@gmail.com
+Password: adminadmin
+
+
 Features List:
 1. Login/Register using JWT.
 2. Protected and restricted routes for users.
-3. Add subject, quiz, notes (in any form - pdf, images,etc) for studying.
+3. Add subject, quiz, questions, notes (in any form - pdf, images,etc) for studying.
 4. Publish/Unpublish quiz anytime.
 5. Random set of questions for different users in a same quiz will be there, thus preventing cheating.
 6. Auto submission when quiz timer ends.
@@ -24,3 +31,4 @@ Features List:
 15. Admin can print as well as download all quiz results for different students in an excel file.
 16. For each quiz, top 3 performer scores in a horizontal bar graph.
 17. Average score per quiz along with a difficulty level of each quiz (calculated on the basis of average percentage of different users) in a pie chart.
+
